@@ -1,4 +1,4 @@
-# wrangler files
+﻿# wrangler files
 .wrangler
 .dev.vars*
 !.dev.vars.example
@@ -19,3 +19,6 @@ node_modules
 wrangler.jsonc
 .claude
 
+prompts
+
+.verificacao
