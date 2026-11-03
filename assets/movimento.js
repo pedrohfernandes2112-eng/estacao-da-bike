@@ -40,6 +40,8 @@
   var hasST = hasGsap && typeof window.ScrollTrigger !== 'undefined';
   var hasSplit = hasGsap && typeof window.SplitText !== 'undefined';
   var EXPO = 'expo.out';
+  // Entrada única do site: some 16px abaixo e aparece em 700 ms. power4.out é a mesma curva de --ease-soft (.22,1,.36,1).
+  var SOFT = 'power4.out', ENTRA = { y: 16, autoAlpha: 0, duration: 0.7, ease: SOFT };
   var $$ = function (sel, ctx) { return Array.prototype.slice.call((ctx || document).querySelectorAll(sel)); };
 
   function init(opts) {
@@ -65,7 +67,7 @@
   /* ---------- Lenis (scroll suave) ---------- */
   function initLenis() {
     if (typeof window.Lenis === 'undefined') return;
-    var lenis = new Lenis({ lerp: 0.1, anchors: true, autoRaf: false });
+    var lenis = new Lenis({ lerp: 0.08, anchors: true, autoRaf: false });
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add(function (t) { lenis.raf(t * 1000); });
     gsap.ticker.lagSmoothing(0);
@@ -77,12 +79,12 @@
   function initReveal() {
     $$('[data-reveal]').forEach(function (el) {
       var kids = el.children.length ? Array.prototype.slice.call(el.children) : [el];
-      gsap.from(kids, { y: 28, autoAlpha: 0, duration: 0.9, ease: EXPO, stagger: 0.08,
-        scrollTrigger: { trigger: el, start: 'top 88%', once: true } });
+      gsap.from(kids, Object.assign({}, ENTRA, { stagger: 0.07,
+        scrollTrigger: { trigger: el, start: 'top 88%', once: true } }));
     });
     $$('[data-reveal-self]').forEach(function (el) {
-      gsap.from(el, { y: 28, autoAlpha: 0, duration: 0.9, ease: EXPO,
-        scrollTrigger: { trigger: el, start: 'top 88%', once: true } });
+      gsap.from(el, Object.assign({}, ENTRA, {
+        scrollTrigger: { trigger: el, start: 'top 88%', once: true } }));
     });
   }
 
@@ -91,21 +93,17 @@
     if (!hasSplit) return;
     var go = function () {
       $$('[data-split]').forEach(function (el) {
-        var type = el.getAttribute('data-split') || 'lines';
         var now = el.hasAttribute('data-split-now');
+        // Sempre linha por linha (nada de letra por letra): cada linha sobe 24px por dentro da máscara, em 800 ms
         SplitText.create(el, {
-          type: type === 'chars' ? 'lines,chars' : type === 'words' ? 'lines,words' : 'lines',
-          mask: 'lines', autoSplit: true, aria: 'auto',
+          type: 'lines', mask: 'lines', autoSplit: true, aria: 'auto',
           onSplit: function (self) {
             // Folga na máscara para acentos (Í, Ã, Ê) e cedilha (Ç) não serem cortados com entrelinha apertada.
             // A margem negativa compensa, então o layout não muda.
             (self.masks || []).forEach(function (m) { m.style.paddingBlock = '0.2em'; m.style.marginBlock = '-0.2em'; });
-            var parts = type === 'chars' ? self.chars : type === 'words' ? self.words : self.lines;
-            var stagger = type === 'chars' ? 0.025 : type === 'words' ? 0.05 : 0.09;
-            // No hero o título termina em menos de 1,2 s (o inspetor reprova título tardio)
-            var vars = { yPercent: 110, duration: now ? 0.85 : 1, ease: EXPO, stagger: stagger };
+            var vars = { y: 24, autoAlpha: 0, duration: 0.8, ease: SOFT, stagger: 0.09 };
             if (!now) vars.scrollTrigger = { trigger: el, start: 'top 88%', once: true };
-            return gsap.from(parts, vars);
+            return gsap.from(self.lines, vars);
           }
         });
       });
@@ -115,11 +113,9 @@
 
   /* ---------- Imagem que abre por máscara ---------- */
   function initImageReveal() {
+    // Imagens usam a mesma entrada das outras peças (sem escala nem máscara)
     $$('[data-reveal-img]').forEach(function (el) {
-      var media = el.querySelector('img,video');
-      var tl = gsap.timeline({ scrollTrigger: { trigger: el, start: 'top 85%', once: true } });
-      tl.fromTo(el, { clipPath: 'inset(100% 0% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.2, ease: 'power4.inOut' });
-      if (media) tl.from(media, { scale: 1.18, duration: 1.6, ease: EXPO }, 0);
+      gsap.from(el, Object.assign({}, ENTRA, { scrollTrigger: { trigger: el, start: 'top 85%', once: true } }));
     });
   }
 
@@ -144,7 +140,7 @@
       var fmt = new Intl.NumberFormat('pt-BR', { minimumFractionDigits: dec, maximumFractionDigits: dec });
       var obj = { v: 0 };
       el.textContent = pre + fmt.format(0) + suf;
-      gsap.to(obj, { v: to, duration: 1.6, ease: 'power2.out',
+      gsap.to(obj, { v: to, duration: 1.2, ease: 'power2.out', // power2.out = easeOutCubic
         scrollTrigger: { trigger: el, start: 'top 90%', once: true },
         onUpdate: function () { el.textContent = pre + fmt.format(obj.v) + suf; } });
     });

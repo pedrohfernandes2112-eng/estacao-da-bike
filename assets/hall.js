@@ -13,7 +13,9 @@ const hall = $('[data-hall]'), palco = $('[data-palco]'), cena = $('[data-cena]'
 const poster = $('[data-poster]'), glBox = $('[data-gl]'), carga = $('[data-carga]'), fundo = $('[data-fundo]');
 const bolhasUl = $('[data-bolhas]'), info = $('[data-info]'), nomeEl = $('[data-nome]'), fraseEl = $('[data-frase]');
 const notaEl = $('[data-nota]'), quero = $('[data-quero]'), fila = $('[data-fila]'), motos = $$('.moto', fila);
-const btVistas = $$('[data-vista]'), btZoom = $('[data-zoom]');
+const btVistas = $$('[data-vista]'), btZoom = $('[data-zoom]'), zoomTxt = $('[data-zoom-txt]');
+const seg = $('[data-segmentado]'), segInd = $('.segmentado__ind', seg);
+const SOFT = 'cubic-bezier(.22,1,.36,1)';
 const bySlug = Object.fromEntries(BIKES.map(b => [b.slug, b]));
 
 const temGL = (() => {
@@ -80,15 +82,16 @@ function montarBolhas(b, animar) {
         (it.nota ? `<span class="bolha__nota">${esc(it.nota)}</span>` : '');
       bolhasUl.appendChild(li);
       if (!anima) return;
-      li.animate([{ opacity: 0, scale: .9, filter: 'blur(8px)' }, { opacity: 1, scale: 1, filter: 'blur(0px)' }],
-        { duration: 520, delay: i * 80, easing: 'cubic-bezier(.2,.8,.2,1)', fill: 'backwards' });
-      const n = $('b', li); if (n) contar(n, it.num, i * 80);
+      // a mesma entrada do resto do site: sobe 16px e aparece, devagar, em cascata de 70 ms
+      li.animate([{ opacity: 0, translate: '0 16px' }, { opacity: 1, translate: '0 0' }],
+        { duration: 700, delay: i * 70, easing: SOFT, fill: 'backwards', composite: 'add' });
+      const n = $('b', li); if (n) contar(n, it.num, i * 70);
     });
   };
   const atuais = $$('.bolha', bolhasUl);
   if (anima && atuais.length) {
-    Promise.all(atuais.map((el, i) => el.animate([{ opacity: 1, scale: 1 }, { opacity: 0, scale: .94 }],
-      { duration: 200, delay: i * 40, easing: 'cubic-bezier(.3,0,.2,1)', fill: 'forwards' }).finished)).then(entrar, entrar);
+    Promise.all(atuais.map((el, i) => el.animate([{ opacity: 1 }, { opacity: 0 }],
+      { duration: 220, delay: i * 40, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'forwards' }).finished)).then(entrar, entrar);
   } else entrar();
 }
 
@@ -125,7 +128,7 @@ const voar = (el, de, para, dur, atraso) => {
   const dx = de.left - para.left, dy = de.top - para.top, s = de.width / para.width;
   if (!isFinite(s) || s <= 0) return;
   el.animate([{ transformOrigin: '0 0', transform: `translate(${dx}px,${dy}px) scale(${s})` }, { transformOrigin: '0 0', transform: 'none' }],
-    { duration: dur, delay: atraso || 0, easing: 'cubic-bezier(.22,.9,.24,1)', fill: 'backwards' });
+    { duration: dur, delay: atraso || 0, easing: SOFT, fill: 'backwards' });
 };
 
 /* ---------- 3D sob demanda ---------- */
@@ -174,7 +177,7 @@ async function mostrar3D(b) {
     if (id !== pedido) return;
     cena.classList.add('is-3d');
     marcarVista(null);
-    btZoom.setAttribute('aria-pressed', 'false'); btZoom.textContent = 'Aproximar';
+    btZoom.setAttribute('aria-pressed', 'false'); zoomTxt.textContent = 'Aproximar';
   } catch (e) {
     /* sem o 3D fica o recorte, com as mesmas bolhas */
   } finally {
@@ -228,7 +231,18 @@ motos.forEach(m => {
 });
 
 /* ---------- vistas e zoom ---------- */
-function marcarVista(nome) { btVistas.forEach(x => x.setAttribute('aria-pressed', String(x.dataset.vista === nome))); }
+/* controle segmentado: a pílula escura desliza até a vista escolhida; sem vista (arrastou), ela some */
+function marcarVista(nome) {
+  btVistas.forEach(x => x.setAttribute('aria-pressed', String(x.dataset.vista === nome)));
+  const bt = btVistas.find(x => x.dataset.vista === nome);
+  if (!bt) { seg.classList.remove('tem-ativo'); return; }
+  const pos = () => { segInd.style.width = bt.offsetWidth + 'px'; segInd.style.transform = `translateX(${bt.offsetLeft}px)`; };
+  if (!seg.classList.contains('tem-ativo')) {
+    // primeira aparição: nasce no lugar, sem viajar desde a esquerda
+    segInd.style.transition = 'none'; pos(); segInd.offsetWidth; segInd.style.transition = '';
+    seg.classList.add('tem-ativo');
+  } else pos();
+}
 function aoMexer() { marcarVista(null); }
 btVistas.forEach(bt => bt.addEventListener('click', () => {
   if (!motor) return;
@@ -238,7 +252,7 @@ btZoom.addEventListener('click', () => {
   if (!motor) return;
   const on = btZoom.getAttribute('aria-pressed') !== 'true';
   btZoom.setAttribute('aria-pressed', String(on));
-  btZoom.textContent = on ? 'Afastar' : 'Aproximar';
+  zoomTxt.textContent = on ? 'Afastar' : 'Aproximar';
   motor.then(m => m.zoom(on));
 });
 

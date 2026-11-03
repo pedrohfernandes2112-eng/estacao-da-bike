@@ -23,7 +23,7 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;700&family=Unbounded:wght@300;800;900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;700&family=Unbounded:wght@300;700;800;900&display=swap">
 <link rel="preload" as="image" href="assets/hero-poster.webp" fetchpriority="high" media="(min-width: 901px)">
 <link rel="preload" as="image" href="assets/hero-poster-900.webp" fetchpriority="high" media="(max-width: 900px)">
 <link rel="stylesheet" href="assets/movimento.css">
@@ -70,8 +70,14 @@
   --f-text:'Manrope',system-ui,sans-serif;
 
   --wrap:1320px; --gut:clamp(16px,4vw,40px); --sec:clamp(80px,10vw,144px);
-  --head:64px; --cut:22px;
+  --head:64px;
   --u:min(calc(100vh / 800), calc(100vw / 716));
+
+  /* forma e movimento dos componentes: pílulas e bolhas que conversam com a Unbounded, tudo devagar */
+  --raio-pilula:999px; --raio-bolha:22px; --raio-icone:50%;
+  --ease-soft:cubic-bezier(.22,1,.36,1); --ease-calma:cubic-bezier(.4,0,.2,1);
+  --dur-1:220ms; --dur-2:420ms; --dur-3:700ms;
+  --brilho-volt:0 10px 30px -8px rgba(34,255,95,.35);
 }
 @media (max-width:609px), (orientation:portrait){ :root{ --u:min(calc(100vw / 390), 1.6px); } }
 
@@ -87,26 +93,83 @@ button{font:inherit;color:inherit}
 h1,h2,h3{margin:0;font-family:var(--f-display);letter-spacing:-.01em;line-height:1.04}
 p,ul,ol,figure,blockquote{margin:0}
 ul,ol{padding:0;list-style:none}
-:focus-visible{outline:2px solid var(--volt);outline-offset:3px}
+:focus-visible{outline:3px solid var(--paper);outline-offset:3px}
+.on-paper :focus-visible{outline-color:var(--p-ink)}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
-.skip-link{background:var(--volt);color:var(--g);font-weight:700}
+.skip-link{background:var(--volt);color:var(--g);font-weight:700;border-radius:var(--raio-pilula);padding:12px 20px}
 .wrap{width:100%;max-width:var(--wrap);margin-inline:auto;padding-inline:var(--gut)}
 .w9{font-weight:900}.w3{font-weight:300}
 section[id],[id="oficina"]{scroll-margin-top:calc(var(--head) + 12px)}
 
-/* botões: o principal cede 3px com sombra dura; os outros só mudam de tom */
-.btn{font:700 1rem/1.1 var(--f-text);min-height:52px;padding:.9em 1.5em;overflow:visible}
-.btn svg{width:20px;height:20px;flex:none;fill:currentColor}
-.btn--volt{background:var(--volt);color:var(--g);transition:transform 140ms var(--ease-out),box-shadow 140ms var(--ease-out)}
-.btn--volt:hover,.btn--volt:focus-visible{transform:translate(-3px,-3px);box-shadow:3px 3px 0 0 var(--g),3px 3px 0 1px var(--volt)}
-.btn--volt:active{transform:translate(0,0);box-shadow:none}
-.on-paper .btn--volt:hover,.on-paper .btn--volt:focus-visible{box-shadow:3px 3px 0 0 var(--p-ink)}
-.btn--line{background:transparent;color:inherit;border:1px solid currentColor;transition:background-color 180ms ease,color 180ms ease}
-.btn--line:hover,.btn--line:focus-visible{background:var(--p-ink);color:var(--paper)}
-.txt-link{display:inline-flex;align-items:center;gap:.4em;min-height:44px;font-weight:700;text-decoration:none;
-  border-bottom:1px solid currentColor;transition:border-color 180ms ease,color 180ms ease}
-.txt-link:hover,.txt-link:focus-visible{border-color:var(--volt)}
-.on-paper .txt-link:hover,.on-paper .txt-link:focus-visible{border-color:var(--p-ink);color:var(--p-mute)}
+/* ============ COMPONENTES: pílula, bolha e movimento calmo ============
+   .btn (principal) · .btn--sec (contorno) · .link (sublinhado que respira) · .btn-icone · .segmentado · .whats-flutuante
+   Só sobem, clareiam e deslizam devagar; nada pula. Hover só onde existe hover de verdade. */
+.btn,.btn--sec{position:relative;display:inline-flex;align-items:center;gap:14px;min-height:52px;border-radius:var(--raio-pilula);
+  font:700 15px/1.2 var(--f-display);letter-spacing:.01em;text-decoration:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.btn{padding:6px 8px 6px 24px;border:0;background:var(--volt);color:var(--g);
+  transition:transform var(--dur-2) var(--ease-soft),box-shadow var(--dur-2) var(--ease-soft),background-color var(--dur-2) var(--ease-soft)}
+.btn__ico{flex:none;display:grid;place-items:center;width:36px;height:36px;border-radius:var(--raio-icone);background:var(--g);color:var(--volt);overflow:hidden}
+.btn__ico svg,.link svg,.btn-icone svg{fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;
+  transition:transform var(--dur-2) var(--ease-soft)}
+.btn__ico svg{width:18px;height:18px}
+.btn--compacto{min-height:44px;gap:10px;padding:4px 6px 4px 18px;font-size:13px}
+.btn--compacto .btn__ico{width:28px;height:28px}
+.btn--compacto .btn__ico svg{width:15px;height:15px}
+.btn:active{transform:scale(.97);transition-duration:160ms}
+
+.btn--sec{padding:6px 24px;color:inherit;background:transparent;border:1.5px solid rgba(255,255,255,.6);isolation:isolate;overflow:hidden;
+  transition:border-color var(--dur-2) var(--ease-soft),transform var(--dur-2) var(--ease-soft)}
+.btn--sec::before{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;background:rgba(255,255,255,.1);
+  transform:scaleX(0);transform-origin:left;transition:transform var(--dur-2) var(--ease-soft)}
+.on-paper .btn--sec{border-color:rgba(24,24,24,.3)}
+.on-paper .btn--sec::before{background:rgba(24,24,24,.06)}
+.btn--sec:active{transform:scale(.97);transition-duration:160ms}
+
+.link{position:relative;display:inline-flex;align-items:center;gap:6px;min-height:44px;font-weight:700;color:inherit;text-decoration:none}
+.link::after{content:"";position:absolute;left:0;right:0;bottom:9px;height:1.5px;border-radius:2px;background:currentColor;transform-origin:right}
+.link:has(svg)::after{right:22px}
+.link svg{width:16px;height:16px;flex:none}
+@keyframes respira{
+  0%{transform:scaleX(1);transform-origin:right}
+  50%{transform:scaleX(0);transform-origin:right}
+  50.1%{transform:scaleX(0);transform-origin:left}
+  100%{transform:scaleX(1);transform-origin:left}
+}
+.link:focus-visible::after{animation:respira 520ms var(--ease-calma)}
+
+.btn-icone{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-width:44px;min-height:44px;padding:0 16px;border:0;
+  border-radius:var(--raio-pilula);background:rgba(255,255,255,.08);color:inherit;font:700 .875rem/1 var(--f-text);cursor:pointer;
+  transition:background-color var(--dur-2) var(--ease-soft),color var(--dur-1) var(--ease-calma)}
+.btn-icone svg{width:18px;height:18px;flex:none}
+.on-paper .btn-icone{background:rgba(24,24,24,.06)}
+
+.segmentado{position:relative;display:inline-flex;padding:4px;border-radius:var(--raio-pilula);background:rgba(24,24,24,.06);isolation:isolate}
+.segmentado button{position:relative;z-index:1;min-height:44px;padding:0 18px;border:0;border-radius:var(--raio-pilula);background:none;cursor:pointer;
+  font:700 .875rem/1 var(--f-text);color:var(--p-ink);transition:color var(--dur-1) var(--ease-calma),background-color var(--dur-2) var(--ease-soft)}
+.segmentado button[aria-pressed="true"]{color:var(--paper)}
+.segmentado__ind{position:absolute;z-index:0;left:0;top:4px;bottom:4px;width:0;border-radius:var(--raio-pilula);background:var(--p-ink);opacity:0;
+  transition:transform 480ms var(--ease-soft),width 480ms var(--ease-soft),opacity var(--dur-1) var(--ease-calma)}
+.segmentado.tem-ativo .segmentado__ind{opacity:1}
+
+@media (hover:hover){
+  .btn:hover{background:color-mix(in srgb,var(--volt) 88%,#fff);transform:translateY(-2px);box-shadow:var(--brilho-volt)}
+  .btn:hover .btn__ico svg{transform:translateX(3px)}
+  .btn:active{transform:scale(.97)}
+  .btn--sec:hover{border-color:#fff}
+  .on-paper .btn--sec:hover{border-color:var(--p-ink)}
+  .btn--sec:hover::before{transform:scaleX(1)}
+  .link:hover::after{animation:respira 520ms var(--ease-calma)}
+  .link:hover svg{transform:translateX(3px)}
+  .btn-icone:hover{background:rgba(255,255,255,.16)}
+  .on-paper .btn-icone:hover{background:rgba(24,24,24,.12)}
+  .btn-icone:hover svg{transform:rotate(8deg)}
+  .segmentado button:not([aria-pressed="true"]):hover{background:rgba(24,24,24,.06)}
+}
+@media (max-width:609px){
+  .btn,.btn--sec{min-height:48px}
+  .btn{padding-left:20px}
+  .btn--compacto{min-height:44px;padding-left:14px}
+}
 
 /* ============ HEADER ============ */
 .topo{position:fixed;inset:0 0 auto 0;z-index:60;height:var(--head);border-bottom:1px solid transparent;transition:background-color 240ms ease,border-color 240ms ease}
@@ -116,21 +179,26 @@ section[id],[id="oficina"]{scroll-margin-top:calc(var(--head) + 12px)}
 .marca img{width:44px;height:44px}
 .marca span{font:800 .9375rem/1 var(--f-display)}
 .nav{display:flex;gap:4px}
-.nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 12px;font:500 .9375rem/1 var(--f-text);color:var(--ink);text-decoration:none;border-bottom:1px solid transparent;text-shadow:0 1px 8px rgba(0,0,0,.35)}
-.nav a:hover,.nav a:focus-visible{border-color:var(--volt)}
-.topo .btn{min-height:44px;padding:.7em 1.1em;font-size:.9375rem}
-.menu-btn{display:none;min-width:56px;min-height:44px;background:rgba(24,24,24,.6);border:1px solid rgba(255,255,255,.35);color:var(--ink);cursor:pointer;font:600 .875rem var(--f-text);padding:0 12px}
+.nav .link{margin:0 6px;padding:0 6px;font:500 .9375rem/1 var(--f-text);color:var(--ink);text-shadow:0 1px 8px rgba(0,0,0,.35)}
+/* na navegação o sublinhado fica guardado e entra devagar da esquerda */
+.nav .link::after{left:6px;right:6px;transform:scaleX(0);transform-origin:left;transition:transform 520ms var(--ease-calma)}
+.nav .link:hover::after,.nav .link:focus-visible::after{transform:scaleX(1);animation:none}
+.menu-btn{display:none}
+.topo .btn-icone{background:rgba(24,24,24,.5);color:var(--ink)}
+@media (hover:hover){.topo .btn-icone:hover{background:rgba(24,24,24,.7)}}
+.menu-btn .l1,.menu-btn .l2{transform-box:fill-box;transform-origin:center;transition:transform var(--dur-2) var(--ease-soft)}
+.menu-btn[aria-expanded="true"] .l1{transform:translateY(3px) rotate(45deg)}
+.menu-btn[aria-expanded="true"] .l2{transform:translateY(-3px) rotate(-45deg)}
 .t-curto{display:none}
 @media (max-width:899px){
   .marca span{display:none}
   .topo__in{gap:10px}
-  .topo .btn{padding:.7em .85em;gap:.45em}
-  .menu-btn{min-width:48px;padding:0 10px}
+  .menu-btn{padding:0 14px}
   .t-longo{display:none}.t-curto{display:inline}
   .js .menu-btn{display:inline-flex;align-items:center;justify-content:center}
   .js .nav{position:absolute;top:var(--head);left:0;right:0;flex-direction:column;background:var(--g);border-bottom:1px solid var(--g-2);padding:8px var(--gut) 16px;display:none}
   .js .nav.is-open{display:flex}
-  .js .nav a{min-height:52px;border-bottom:1px solid var(--g-2);font-size:1.0625rem;text-shadow:none}
+  .js .nav .link{min-height:52px;margin:0;font-size:1.0625rem;text-shadow:none;align-self:flex-start}
   .no-js .nav{display:none}
 }
 
@@ -162,7 +230,6 @@ section[id],[id="oficina"]{scroll-margin-top:calc(var(--head) + 12px)}
 .ab-l{right:calc(50% + 150 * var(--u));text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:calc(18 * var(--u))}
 .ab-r{left:calc(50% + 150 * var(--u));display:grid;gap:8px}
 .apoio{font-size:max(15px, calc(16 * var(--u)));line-height:1.5;color:rgba(255,255,255,.88);text-shadow:0 1px 14px rgba(0,0,0,.45)}
-.ab-l .btn{font-size:max(15px, calc(15 * var(--u)))}
 .estrelas-mini{display:flex;gap:4px}
 .estrelas-mini svg{width:calc(20 * var(--u));height:calc(20 * var(--u));min-width:16px;min-height:16px;fill:var(--ink)}
 .ab-r p{font-weight:700;font-size:max(14px, calc(15 * var(--u)));text-shadow:0 1px 14px rgba(0,0,0,.5)}
@@ -176,7 +243,7 @@ section[id],[id="oficina"]{scroll-margin-top:calc(var(--head) + 12px)}
 .dif h2{font-weight:800;font-size:calc(19 * var(--u));line-height:1.18;text-transform:uppercase;letter-spacing:.01em;text-shadow:0 1px 16px rgba(0,0,0,.45)}
 .dif h2 span{display:block}
 .dif p{font-size:max(14px, calc(12.5 * var(--u)));line-height:1.5;color:rgba(255,255,255,.9);text-shadow:0 1px 12px rgba(0,0,0,.5)}
-.dif .txt-link{font-size:max(14px, calc(13 * var(--u)));justify-self:end;color:var(--ink)}
+.dif .btn--sec{justify-self:end;margin-top:8px;min-height:44px;font-size:13px;color:var(--ink)}
 .dif--l{margin-left:auto;margin-right:calc(50% + 80 * var(--u));text-align:right;grid-template-columns:1fr auto}
 .dif--l svg{grid-column:2}
 .dif--l > :not(svg){grid-column:1}
@@ -201,7 +268,7 @@ html:not(.hero-live) .dif{margin-top:14vh}
   .dif,.dif--l,.dif--r,.dif--c{width:min(420px, calc(100% - 32px));margin:16vh auto 0;text-align:center;justify-items:center;grid-template-columns:1fr}
   .dif svg,.dif--l svg{grid-row:auto;grid-column:1;margin-bottom:6px}
   .dif > :not(svg),.dif--l > :not(svg),.dif--r > :not(svg){grid-column:1}
-  .dif .txt-link{justify-self:center}
+  .dif .btn--sec{justify-self:center}
   .dif--r::before,.dif--c::before,.ab-r::before{inset:-40px -14px}
   .dif--l::before{content:"";position:absolute;inset:-40px -14px;z-index:-1;pointer-events:none;background:radial-gradient(closest-side,rgba(0,0,0,.30),rgba(0,0,0,0))}
   .dif h2{font-size:clamp(19px, calc(19 * var(--u)), 24px)}
@@ -223,34 +290,34 @@ html:not(.hero-live) .dif{margin-top:14vh}
 
 /* a fileira: as bikes em pé sobre o mesmo chão */
 .fila{--gap:clamp(12px,2vw,32px);display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:var(--gap);align-items:start}
-.moto{display:block;width:100%;padding:0;background:none;border:0;cursor:pointer;text-align:left;transition:opacity 260ms ease}
+.moto{display:block;width:100%;padding:12px 12px 16px;background:none;border:1.5px solid transparent;border-radius:var(--raio-bolha);cursor:pointer;text-align:left;
+  transition:transform var(--dur-2) var(--ease-soft),box-shadow var(--dur-2) var(--ease-soft),background-color var(--dur-2) var(--ease-soft),border-color var(--dur-1) var(--ease-calma)}
 .moto__img{position:relative;display:block;aspect-ratio:3/2}
 .moto__img img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:50% 100%;
-  -webkit-box-reflect:below 0 linear-gradient(transparent 80%,rgba(255,255,255,.14));
-  transition:transform 320ms var(--ease-out)}
-.moto__img::after{content:"";position:absolute;left:calc(var(--gap) / -2);right:calc(var(--gap) / -2);bottom:0;height:1px;background:rgba(24,24,24,.08)}
-.moto__img::before{content:"";position:absolute;left:12%;right:12%;bottom:-7px;height:14px;border-radius:50%;
-  background:radial-gradient(closest-side,rgba(24,24,24,.28),rgba(24,24,24,0));opacity:0;transition:opacity 320ms ease}
+  -webkit-box-reflect:below 0 linear-gradient(transparent 80%,rgba(255,255,255,.14))}
+.moto__img::after{content:"";position:absolute;left:calc(var(--gap) / -2 - 13.5px);right:calc(var(--gap) / -2 - 13.5px);bottom:0;height:1px;background:rgba(24,24,24,.08)}
 .moto__nome{display:block;margin-top:clamp(22px,2.4vw,34px);font:800 clamp(.9375rem,1.2vw,1.125rem)/1.15 var(--f-display);color:var(--p-ink)}
 .moto__marca{display:block;margin-top:4px;font:400 .9375rem var(--f-text);color:var(--p-mute)}
 .moto__marca:empty::before{content:"\00a0"}
-.moto__acao{display:inline-flex;align-items:center;gap:6px;margin-top:10px;font:700 .875rem var(--f-text);color:var(--p-ink);border-bottom:1px solid transparent;transition:border-color 200ms ease}
-.moto__acao svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.moto__acao{display:inline-flex;align-items:center;gap:6px;margin-top:10px;font:700 .875rem var(--f-text);color:var(--p-ink)}
+.moto__acao svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;transition:transform var(--dur-2) var(--ease-soft)}
 .no-js .moto__acao{display:none}
-.moto:hover .moto__acao,.moto:focus-visible .moto__acao{border-color:var(--p-ink)}
 .hall.is-open .moto__acao{display:none}
-.moto:hover .moto__img img,.moto:focus-visible .moto__img img{transform:translateY(-6px)}
-.moto:hover .moto__img::before,.moto:focus-visible .moto__img::before{opacity:1}
-.fila:has(.moto:hover) .moto:not(:hover),.fila:has(.moto:focus-visible) .moto:not(:focus-visible){opacity:.6}
+@media (hover:hover){
+  .moto:hover{transform:translateY(-4px);box-shadow:0 18px 40px -20px rgba(24,24,24,.35);background:rgba(255,255,255,.55)}
+  .moto:hover .moto__acao svg{transform:rotate(8deg)}
+}
+/* selecionada: contorno de 1,5px e o pontinho verde de "ligada" */
+.moto[aria-pressed="true"]{border-color:var(--p-ink)}
+.moto[aria-pressed="true"] .moto__nome::before{content:"";display:inline-block;width:8px;height:8px;margin-right:7px;border-radius:50%;
+  background:var(--volt);box-shadow:0 0 0 1.5px var(--p-ink);vertical-align:.08em}
 
 /* o palco 3D */
 .palco[hidden]{display:none}
 .palco{margin-bottom:clamp(28px,3vw,44px)}
 .palco__barra{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px}
-.vistas{display:flex;gap:6px;flex-wrap:wrap}
-.vista{min-height:44px;padding:0 16px;background:none;border:1px solid var(--p-rule);cursor:pointer;font:700 .875rem var(--f-text);color:var(--p-ink);transition:border-color 160ms ease,background-color 160ms ease,color 160ms ease}
-.vista:hover{border-color:var(--p-ink)}
-.vista[aria-pressed="true"]{background:var(--p-ink);border-color:var(--p-ink);color:var(--paper)}
+.vistas{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.vistas .btn-icone{min-height:52px;padding:0 18px}
 .palco__dica{font-size:.9375rem;color:var(--p-mute)}
 .palco.is-static .vistas,.palco.is-static .palco__dica{display:none}
 .cena{position:relative;--bw:.5;--chao:.1}
@@ -270,7 +337,7 @@ html:not(.hero-live) .dif{margin-top:14vh}
 
 /* bolhas de vidro: o único lugar do site com glass, pedido do cliente */
 .bolhas{position:absolute;inset:clamp(14px,1.8vw,26px);pointer-events:none}
-.bolha{position:absolute;width:clamp(200px,17vw,250px);padding:16px 18px 18px;border-radius:28px;color:var(--p-ink);
+.bolha{position:absolute;width:clamp(200px,17vw,250px);padding:16px 18px 18px;border-radius:var(--raio-bolha);color:var(--p-ink);
   background:rgba(255,255,255,.28);-webkit-backdrop-filter:blur(16px) saturate(140%);backdrop-filter:blur(16px) saturate(140%);
   border:1px solid rgba(255,255,255,.55);box-shadow:inset 0 1px 0 rgba(255,255,255,.6),0 12px 32px -20px rgba(24,24,24,.35);
   animation:boia 6s ease-in-out infinite;animation-delay:var(--fase,0s)}
@@ -300,18 +367,18 @@ html:not(.hero-live) .dif{margin-top:14vh}
   .hall.is-open .hall__base{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:56px;align-items:end}
 }
 .hall.is-open .fila{--gap:12px}
+.hall.is-open .moto{padding:8px 8px 10px}
+.hall.is-open .moto__img::after{display:none}
 .hall.is-open .moto__nome{margin-top:12px;font-size:.75rem}
 .hall.is-open .moto__marca{display:none}
 .hall.is-open .moto__img img{-webkit-box-reflect:unset}
-.moto[aria-pressed="true"]{opacity:.4}
-.moto[aria-pressed="true"] .moto__nome{text-decoration:underline 2px;text-underline-offset:5px}
 
 @media (max-width:1023px){
   .cena{--bw:.72;--chao:.08}
   .cena__vista{height:clamp(260px,60vw,520px)}
-  .bolhas{position:relative;inset:auto;display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:14px;
+  .bolhas{position:relative;inset:auto;display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:14px;border-radius:var(--raio-bolha);
     background:repeating-linear-gradient(135deg,rgba(24,24,24,.07) 0 1px,transparent 1px 9px),#E6E6E0}
-  .bolha,.bolha:nth-child(n){position:relative;inset:auto;width:auto;border-radius:22px;padding:14px 14px 16px}
+  .bolha,.bolha:nth-child(n){position:relative;inset:auto;width:auto;padding:14px 14px 16px}
   .bolha__val{font-size:clamp(1.375rem,6vw,1.875rem)}
   .bolha--txt .bolha__val{font-size:clamp(.9375rem,3.6vw,1.125rem)}
 }
@@ -329,7 +396,8 @@ html:not(.hero-live) .dif{margin-top:14vh}
 }
 @media (max-width:609px){
   .cena{--bw:.86}
-  .vista{padding:0 12px}
+  .segmentado button{padding:0 13px}
+  .vistas .btn-icone{padding:0 14px}
   .palco__dica{display:none}
 }
 
@@ -346,7 +414,7 @@ html:not(.hero-live) .dif{margin-top:14vh}
 .fato span{font:300 clamp(1.125rem,2vw,1.75rem)/1.2 var(--f-display);color:var(--ink)}
 .fato:nth-child(n+2) b{font-size:clamp(2.25rem,5vw,4.5rem)}
 .eco__nota{margin-top:24px;font-size:.9375rem;color:var(--mute);max-width:52ch}
-.moldura{overflow:hidden;aspect-ratio:3/4;border:1px solid var(--g-2);clip-path:polygon(0 0,100% 0,100% calc(100% - var(--cut)),calc(100% - var(--cut)) 100%,0 100%)}
+.moldura{overflow:hidden;aspect-ratio:3/4;border-radius:var(--raio-bolha)}
 .moldura img{width:100%;height:100%;object-fit:cover;object-position:45% 60%}
 .eco__fig figcaption{margin-top:10px;font-size:.875rem;color:var(--mute)}
 @media (min-width:900px){.eco__grid{grid-template-columns:minmax(0,7fr) minmax(0,4fr);align-items:end}}
@@ -363,6 +431,7 @@ html:not(.hero-live) .dif{margin-top:14vh}
 .autorizado{border-top:1px solid var(--p-ink);border-bottom:1px solid var(--p-ink);padding:14px 0;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .autorizado span{color:var(--p-mute)}
 .autorizado b{font:800 1.0625rem var(--f-display)}
+.hist__foto{border-radius:var(--raio-bolha);overflow:hidden}
 .hist__foto img{width:100%;aspect-ratio:1/1;object-fit:cover;object-position:30% 60%}
 .hist__foto figcaption{margin-top:8px;font-size:.875rem;color:var(--p-mute)}
 @media (min-width:900px){.hist__grid{grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:80px}}
@@ -399,7 +468,7 @@ html:not(.hero-live) .dif{margin-top:14vh}
 .raio-svg{position:absolute;left:-2%;width:104%;bottom:-.2em;height:.34em;overflow:visible}
 .raio-svg path{fill:none;stroke:var(--volt);stroke-width:4;stroke-linejoin:miter;vector-effect:non-scaling-stroke}
 .vis__grid{display:grid;gap:40px;margin-top:clamp(36px,5vw,64px)}
-.mapa{position:relative;min-height:420px;background:#E4E4DE;border:1px solid var(--p-ink);clip-path:polygon(var(--cut) 0,100% 0,100% 100%,0 100%,0 var(--cut))}
+.mapa{position:relative;min-height:420px;background:#E4E4DE;border-radius:var(--raio-bolha);overflow:hidden}
 .mapa iframe{position:absolute;inset:0;width:100%;height:100%;border:0;filter:grayscale(1) contrast(1.05)}
 .mapa__ph{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:24px;color:var(--p-mute)}
 .vis__info{display:grid;gap:24px;align-content:start}
@@ -422,8 +491,6 @@ html:not(.hero-live) .dif{margin-top:14vh}
 .rod__marca img{width:96px;height:96px}
 .rodape h2{font:700 .9375rem var(--f-text);color:var(--mute);margin-bottom:10px}
 .rodape address{font-style:normal}
-.rodape a{text-decoration:none;display:inline-flex;align-items:center;min-height:44px;border-bottom:1px solid var(--g-2)}
-.rodape a:hover,.rodape a:focus-visible{border-color:var(--volt)}
 .rod__aut{margin-top:20px;color:var(--mute)}
 .rod__aut b{display:block;color:var(--ink);font:800 1rem var(--f-display)}
 .rod__fim{margin-top:56px;padding-top:24px;border-top:1px solid var(--g-2);display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;color:var(--mute)}
@@ -431,17 +498,40 @@ html:not(.hero-live) .dif{margin-top:14vh}
 @media (min-width:900px){.rod__grid{grid-template-columns:1.2fr 1fr 1fr 1fr;gap:48px}}
 
 /* WhatsApp flutuante na paleta */
-.wa-float{border-radius:0;width:58px;min-width:58px;height:58px;padding:0;clip-path:polygon(0 0,100% 0,100% calc(100% - 14px),calc(100% - 14px) 100%,0 100%)}
-.wa-float svg{width:28px;height:28px;fill:currentColor}
+/* círculo verde que respira devagar até a primeira interação; o rótulo desliza no hover */
+.whats-flutuante{position:fixed;z-index:90;right:max(16px,env(safe-area-inset-right));bottom:max(16px,env(safe-area-inset-bottom));
+  display:grid;place-items:center;width:60px;height:60px;border-radius:var(--raio-icone);background:var(--volt);color:var(--g);text-decoration:none;
+  box-shadow:0 14px 30px -14px rgba(0,0,0,.55);
+  transition:transform var(--dur-2) var(--ease-soft),opacity var(--dur-3) var(--ease-soft),box-shadow var(--dur-2) var(--ease-soft)}
+.whats-flutuante svg{width:28px;height:28px;fill:currentColor}
+.whats-flutuante::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;animation:halo 4s var(--ease-calma) infinite}
+.whats-flutuante.parado::after{animation:none}
+@keyframes halo{0%{box-shadow:0 0 0 0 rgba(34,255,95,.28)}60%,100%{box-shadow:0 0 0 10px rgba(34,255,95,0)}}
+.whats-flutuante__rotulo{position:absolute;right:calc(100% + 12px);top:50%;margin-top:-18px;height:36px;display:flex;align-items:center;padding:0 16px;
+  border-radius:var(--raio-pilula);background:var(--g);color:var(--paper);font:700 .875rem/1 var(--f-text);white-space:nowrap;pointer-events:none;
+  opacity:0;transform:translateX(8px);transition:opacity var(--dur-2) var(--ease-soft),transform var(--dur-2) var(--ease-soft)}
+.js .whats-flutuante:not(.is-visible){opacity:0;transform:translateY(16px);pointer-events:none}
+@media (hover:hover){
+  .whats-flutuante.is-visible:hover,.no-js .whats-flutuante:hover{transform:translateY(-2px);box-shadow:0 18px 34px -14px rgba(0,0,0,.6)}
+  .whats-flutuante:hover .whats-flutuante__rotulo{opacity:1;transform:none}
+}
+.whats-flutuante:focus-visible .whats-flutuante__rotulo{opacity:1;transform:none}
 
 @media (prefers-reduced-motion:reduce){
-  .btn--volt,.vista,.txt-link,.moto,.moto__img img,.moto__img::before{transition:none}
+  /* movimento reduzido: tudo aparece direto e o hover só troca de cor */
+  .btn:hover,.btn:active,.btn--sec:active,.moto:hover,.whats-flutuante:hover{transform:none!important;box-shadow:none}
+  .btn__ico svg,.link svg,.btn-icone svg,.moto__acao svg{transform:none!important}
+  .link::after{animation:none!important}
+  .whats-flutuante::after{animation:none}
+  .whats-flutuante__rotulo{transform:none!important}
 }
 </style>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="i-wa" viewBox="0 0 24 24"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.48-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.63.71.22 1.36.2 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.41-.08-.13-.28-.2-.57-.35m-5.42 7.4A9.87 9.87 0 0 1 7.02 20.4l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.89 9.88M20.46 3.49A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.69 1.45c6.55 0 11.89-5.34 11.89-11.89a11.82 11.82 0 0 0-3.48-8.42"/></symbol>
+  <symbol id="i-wa-l" viewBox="0 0 24 24"><path d="M12 3.5a8.5 8.5 0 0 0-7.3 12.8L3.5 20.5l4.3-1.1A8.5 8.5 0 1 0 12 3.5z"/><path d="M9.3 8.6c.3-.5.6-.6.9-.6h.4c.2 0 .4.1.5.4l.6 1.4c.1.2 0 .5-.1.7l-.5.6a6.4 6.4 0 0 0 2.9 2.8l.6-.5c.2-.2.5-.2.7-.1l1.4.6c.3.1.4.3.4.5v.4c0 .4-.2.7-.6.9-.7.3-1.5.3-2.2 0a8 8 0 0 1-4.9-4.9c-.2-.7-.2-1.5.1-2.2z"/></symbol>
+  <symbol id="i-seta" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
   <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 1.8l3.05 6.86 7.45.72-5.62 4.98 1.64 7.33L12 17.9l-6.52 3.79 1.64-7.33L1.5 9.38l7.45-.72z"/></symbol>
 </svg>
 
@@ -454,15 +544,13 @@ html:not(.hero-live) .dif{margin-top:14vh}
       <span>Estação da Bike</span>
     </a>
     <nav class="nav" id="nav" aria-label="Seções">
-      <a href="#modelos">Modelos</a>
-      <a href="#oficina">Oficina</a>
-      <a href="#avaliacoes">Avaliações</a>
-      <a href="#visite">Visite</a>
+      <a class="link" href="#modelos">Modelos</a>
+      <a class="link" href="#oficina">Oficina</a>
+      <a class="link" href="#avaliacoes">Avaliações</a>
+      <a class="link" href="#visite">Visite</a>
     </nav>
-    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
-    <a class="btn btn--volt" href="https://wa.me/5548999918272?text=Ol%C3%A1%2C%20Renato%20e%20Fabi!%20Vi%20o%20site%20da%20Esta%C3%A7%C3%A3o%20da%20Bike%20e%20quero%20um%20or%C3%A7amento%20de%20bike%20el%C3%A9trica." target="_blank" rel="noopener">
-      <svg aria-hidden="true"><use href="#i-wa"/></svg><span class="t-longo">Orçamento no WhatsApp</span><span class="t-curto">Orçamento</span>
-    </a>
+    <button class="btn-icone menu-btn" type="button" aria-expanded="false" aria-controls="nav"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="l1" d="M5 9h14"/><path class="l2" d="M5 15h14"/></svg>Menu</button>
+    <a class="btn btn--compacto" href="https://wa.me/5548999918272?text=Ol%C3%A1%2C%20Renato%20e%20Fabi!%20Vi%20o%20site%20da%20Esta%C3%A7%C3%A3o%20da%20Bike%20e%20quero%20um%20or%C3%A7amento%20de%20bike%20el%C3%A9trica." target="_blank" rel="noopener"><span class="btn__txt"><span class="t-longo">Orçamento no WhatsApp</span><span class="t-curto">Orçamento</span></span><span class="btn__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-wa-l"/></svg></span></a>
   </div>
 </header>
 
@@ -487,10 +575,8 @@ html:not(.hero-live) .dif{margin-top:14vh}
         <h1><span>A Ilha</span> <span>inteira cabe</span> <span>no seu</span> <span>pedal</span></h1>
         <div class="ab-l">
           <p class="apoio">Bikes elétricas Ouxi e Inow, escolhidas com você pelo Renato e pela Fabi, no Rio Tavares.</p>
-          <a class="btn btn--volt" href="https://wa.me/5548999918272?text=Ol%C3%A1%2C%20Renato%20e%20Fabi!%20Vi%20o%20site%20da%20Esta%C3%A7%C3%A3o%20da%20Bike%20e%20quero%20um%20or%C3%A7amento%20de%20bike%20el%C3%A9trica." target="_blank" rel="noopener">
-            <svg aria-hidden="true"><use href="#i-wa"/></svg>Quero meu orçamento
-          </a>
-          <a class="txt-link" href="#visite">Ver como chegar</a>
+          <a class="btn" href="https://wa.me/5548999918272?text=Ol%C3%A1%2C%20Renato%20e%20Fabi!%20Vi%20o%20site%20da%20Esta%C3%A7%C3%A3o%20da%20Bike%20e%20quero%20um%20or%C3%A7amento%20de%20bike%20el%C3%A9trica." target="_blank" rel="noopener"><span class="btn__txt">Quero meu orçamento</span><span class="btn__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-wa-l"/></svg></span></a>
+          <a class="link" href="#visite">Ver como chegar<svg aria-hidden="true"><use href="#i-seta"/></svg></a>
         </div>
         <div class="ab-r">
           <div class="estrelas-mini" role="img" aria-label="5 de 5 estrelas">
@@ -504,7 +590,7 @@ html:not(.hero-live) .dif{margin-top:14vh}
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.3 5.1L3.2 17.6a1.6 1.6 0 0 0 2.3 2.3l6.2-6.2a4 4 0 0 0 5.1-5.3l-2.5 2.5-2.3-.6-.6-2.3z"/></svg>
         <h2><span>Oficina ao lado</span> <span>da praia</span></h2>
         <p>Furou o pneu? O conserto sai na hora ou em poucas horas, na nossa oficina no Rio Tavares.</p>
-        <a class="txt-link" href="https://wa.me/5548999918272?text=Ol%C3%A1!%20Minha%20bike%20el%C3%A9trica%20precisa%20de%20manuten%C3%A7%C3%A3o.%20Conseguem%20ver%20hoje%3F" target="_blank" rel="noopener">Chamar a oficina</a>
+        <a class="btn--sec" href="https://wa.me/5548999918272?text=Ol%C3%A1!%20Minha%20bike%20el%C3%A9trica%20precisa%20de%20manuten%C3%A7%C3%A3o.%20Conseguem%20ver%20hoje%3F" target="_blank" rel="noopener">Chamar a oficina</a>
       </div>
       <div class="dif dif--r">
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="7.5" r="3.5"/><path d="M2.5 20.5v-1a6.5 6.5 0 0 1 13 0v1"/><circle cx="17.5" cy="8.5" r="2.6"/><path d="M17 13.6a5 5 0 0 1 4.5 5v1.9"/></svg>
@@ -539,11 +625,14 @@ html:not(.hero-live) .dif{margin-top:14vh}
 
   <div class="wrap palco" data-palco hidden>
     <div class="palco__barra">
-      <div class="vistas" role="group" aria-label="Vista da bike">
-        <button class="vista" type="button" data-vista="lateral" aria-pressed="false">Lateral</button>
-        <button class="vista" type="button" data-vista="tres" aria-pressed="false">3/4</button>
-        <button class="vista" type="button" data-vista="frente" aria-pressed="false">Frente</button>
-        <button class="vista vista--zoom" type="button" data-zoom aria-pressed="false">Aproximar</button>
+      <div class="vistas">
+        <div class="segmentado" role="group" aria-label="Vista da bike" data-segmentado>
+          <span class="segmentado__ind" aria-hidden="true"></span>
+          <button type="button" data-vista="lateral" aria-pressed="false">Lateral</button>
+          <button type="button" data-vista="tres" aria-pressed="false">3/4</button>
+          <button type="button" data-vista="frente" aria-pressed="false">Frente</button>
+        </div>
+        <button class="btn-icone" type="button" data-zoom aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2M11 8.5v5M8.5 11h5"/></svg><span data-zoom-txt>Aproximar</span></button>
       </div>
       <p class="palco__dica" data-dica>Arraste para girar</p>
     </div>
@@ -564,9 +653,7 @@ html:not(.hero-live) .dif{margin-top:14vh}
       <h3 class="ficha-bike__nome" data-nome></h3>
       <p class="ficha-bike__frase" data-frase></p>
       <p class="ficha-bike__nota" data-nota>A ficha completa desta bike a gente te passa na hora pelo WhatsApp.</p>
-      <a class="btn btn--volt" data-quero href="https://wa.me/5548999918272" target="_blank" rel="noopener">
-        <svg aria-hidden="true"><use href="#i-wa"/></svg>Quero essa
-      </a>
+      <a class="btn" data-quero href="https://wa.me/5548999918272" target="_blank" rel="noopener"><span class="btn__txt">Quero essa</span><span class="btn__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-wa-l"/></svg></span></a>
     </div>
     <ul class="fila" data-fila>
       <li><button class="moto" type="button" data-slug="inow-verde" aria-label="Ver a Inow verde em 3D">
@@ -600,8 +687,8 @@ html:not(.hero-live) .dif{margin-top:14vh}
     <div>
       <h2 id="h-eco" data-split="lines"><span class="w9">O carro para.</span> <span class="w3">Você passa.</span></h2>
       <p class="eco__dor" data-reveal-self>Enquanto o carro para no Rio Tavares em janeiro, você passa. Sem fila na SC-405, sem posto e sem procurar vaga no Campeche.</p>
-      <ul class="fatos" data-fatos>
-        <li class="fato"><b>R$ 0,01</b><span>por km rodado</span></li>
+      <ul class="fatos" data-fatos data-reveal>
+        <li class="fato"><b data-count-to="0.01" data-count-decimals="2" data-count-prefix="R$ ">R$ 0,01</b><span>por km rodado</span></li>
         <li class="fato"><b>0</b><span>litro de gasolina</span></li>
         <li class="fato"><b>Sem</b><span>IPVA</span></li>
         <li class="fato"><b>Sem</b><span>emplacamento</span></li>
@@ -627,7 +714,7 @@ html:not(.hero-live) .dif{margin-top:14vh}
         <p class="lead">A Estação da Bike nasceu há quase dois anos no Rio Tavares, das mãos do Renato e da Fabi.</p>
         <p>Quem entra aqui é atendido pelos donos: sem pressa, sem empurrar modelo, explicando o que cada bike faz de verdade. Primeiro a gente entende a sua rotina (trabalho, praia, mercado, faculdade), depois mostra as bikes que fazem sentido para ela.</p>
         <p>Nossa missão é simples: deixar a mobilidade elétrica acessível e prática em Floripa, com economia, liberdade e mais qualidade de vida.</p>
-        <div><a class="btn btn--volt" href="https://wa.me/5548999918272?text=Oi%2C%20Renato%20e%20Fabi!%20Quero%20ajuda%20para%20escolher%20o%20modelo%20certo%20para%20mim." target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>Fale direto com o Renato e a Fabi</a></div>
+        <div><a class="btn" href="https://wa.me/5548999918272?text=Oi%2C%20Renato%20e%20Fabi!%20Quero%20ajuda%20para%20escolher%20o%20modelo%20certo%20para%20mim." target="_blank" rel="noopener"><span class="btn__txt">Fale direto com o Renato e a Fabi</span><span class="btn__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-wa-l"/></svg></span></a></div>
       </div>
       <div class="hist__lado">
         <p class="autorizado" data-reveal-self><span>Revendedor autorizado</span><b>Ouxi · Inow</b></p>
@@ -645,7 +732,7 @@ html:not(.hero-live) .dif{margin-top:14vh}
   <div class="wrap">
     <div class="aval__top">
       <div>
-        <p class="nota__n" data-reveal-self>5,0</p>
+        <p class="nota__n" data-reveal-self><span data-count-to="5" data-count-decimals="1">5,0</span></p>
         <div class="estrelas" role="img" aria-label="5 de 5 estrelas" data-estrelas>
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.8l3.05 6.86 7.45.72-5.62 4.98 1.64 7.33L12 17.9l-6.52 3.79 1.64-7.33L1.5 9.38l7.45-.72z"/></svg>
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.8l3.05 6.86 7.45.72-5.62 4.98 1.64 7.33L12 17.9l-6.52 3.79 1.64-7.33L1.5 9.38l7.45-.72z"/></svg>
@@ -670,8 +757,8 @@ html:not(.hero-live) .dif{margin-top:14vh}
       <blockquote class="dep"><p>“Além do ótimo atendimento, o pós-venda também foi excelente. Sempre que precisei de suporte, fui prontamente atendida.”</p><footer class="quem"><b>Marthina</b></footer></blockquote>
     </div>
     <div class="aval__links">
-      <a class="txt-link" href="https://www.google.com/search?q=Esta%C3%A7%C3%A3o+da+Bike+Rio+Tavares+Florian%C3%B3polis" target="_blank" rel="noopener">Ver todas no Google</a>
-      <a class="txt-link" href="https://instagram.com/bikeeletricafloripa" target="_blank" rel="noopener">1.460 pessoas acompanham no Instagram</a>
+      <a class="link" href="https://www.google.com/search?q=Esta%C3%A7%C3%A3o+da+Bike+Rio+Tavares+Florian%C3%B3polis" target="_blank" rel="noopener">Ver todas no Google<svg aria-hidden="true"><use href="#i-seta"/></svg></a>
+      <a class="link" href="https://instagram.com/bikeeletricafloripa" target="_blank" rel="noopener">1.460 pessoas acompanham no Instagram<svg aria-hidden="true"><use href="#i-seta"/></svg></a>
     </div>
   </div>
 </section>
@@ -700,8 +787,8 @@ html:not(.hero-live) .dif{margin-top:14vh}
           </tbody>
         </table>
         <div class="vis__acts">
-          <a class="btn btn--volt" href="https://wa.me/5548999918272?text=Ol%C3%A1!%20Estou%20indo%20%C3%A0%20loja%20hoje%2C%20voc%C3%AAs%20est%C3%A3o%20a%C3%AD%3F" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>Avisar que estou indo</a>
-          <a class="btn btn--line" href="https://www.google.com/maps/dir/?api=1&amp;destination=Rod.%20Dr.%20Ant%C3%B4nio%20Luiz%20Moura%20Gonzaga%2C%20861%2C%20Rio%20Tavares%2C%20Florian%C3%B3polis%20-%20SC%2C%2088048-382" target="_blank" rel="noopener">Traçar rota</a>
+          <a class="btn" href="https://wa.me/5548999918272?text=Ol%C3%A1!%20Estou%20indo%20%C3%A0%20loja%20hoje%2C%20voc%C3%AAs%20est%C3%A3o%20a%C3%AD%3F" target="_blank" rel="noopener"><span class="btn__txt">Avisar que estou indo</span><span class="btn__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-wa-l"/></svg></span></a>
+          <a class="btn--sec" href="https://www.google.com/maps/dir/?api=1&amp;destination=Rod.%20Dr.%20Ant%C3%B4nio%20Luiz%20Moura%20Gonzaga%2C%20861%2C%20Rio%20Tavares%2C%20Florian%C3%B3polis%20-%20SC%2C%2088048-382" target="_blank" rel="noopener">Traçar rota</a>
         </div>
       </div>
     </div>
@@ -727,8 +814,8 @@ html:not(.hero-live) .dif{margin-top:14vh}
       </div>
       <div>
         <h2>Contato</h2>
-        <p><a href="https://wa.me/5548999918272?text=Ol%C3%A1%2C%20Renato%20e%20Fabi!%20Vi%20o%20site%20da%20Esta%C3%A7%C3%A3o%20da%20Bike%20e%20quero%20um%20or%C3%A7amento%20de%20bike%20el%C3%A9trica." target="_blank" rel="noopener">WhatsApp (48) 99991-8272</a></p>
-        <p><a href="https://instagram.com/bikeeletricafloripa" target="_blank" rel="noopener">Instagram @bikeeletricafloripa</a></p>
+        <p><a class="link" href="https://wa.me/5548999918272?text=Ol%C3%A1%2C%20Renato%20e%20Fabi!%20Vi%20o%20site%20da%20Esta%C3%A7%C3%A3o%20da%20Bike%20e%20quero%20um%20or%C3%A7amento%20de%20bike%20el%C3%A9trica." target="_blank" rel="noopener">WhatsApp (48) 99991-8272</a></p>
+        <p><a class="link" href="https://instagram.com/bikeeletricafloripa" target="_blank" rel="noopener">Instagram @bikeeletricafloripa</a></p>
       </div>
     </div>
     <div class="rod__fim">
@@ -738,7 +825,8 @@ html:not(.hero-live) .dif{margin-top:14vh}
   </div>
 </footer>
 
-<a class="wa-float" data-wa-float href="https://wa.me/5548999918272?text=Ol%C3%A1%2C%20Renato%20e%20Fabi!%20Vi%20o%20site%20da%20Esta%C3%A7%C3%A3o%20da%20Bike%20e%20quero%20um%20or%C3%A7amento%20de%20bike%20el%C3%A9trica." target="_blank" rel="noopener" aria-label="Pedir orçamento pelo WhatsApp">
+<a class="whats-flutuante" data-wa-float href="https://wa.me/5548999918272?text=Ol%C3%A1%2C%20Renato%20e%20Fabi!%20Vi%20o%20site%20da%20Esta%C3%A7%C3%A3o%20da%20Bike%20e%20quero%20um%20or%C3%A7amento%20de%20bike%20el%C3%A9trica." target="_blank" rel="noopener" aria-label="Pedir orçamento pelo WhatsApp">
+  <span class="whats-flutuante__rotulo" aria-hidden="true">Fale com a gente</span>
   <svg aria-hidden="true"><use href="#i-wa"/></svg>
 </a>
 
@@ -766,6 +854,10 @@ html:not(.hero-live) .dif{margin-top:14vh}
   mb.addEventListener('click',function(){setMenu(mb.getAttribute('aria-expanded')!=='true')});
   nav.addEventListener('click',function(e){if(e.target.closest('a'))setMenu(false)});
   d.addEventListener('keydown',function(e){if(e.key==='Escape'&&nav.classList.contains('is-open')){setMenu(false);mb.focus()}});
+
+  /* WhatsApp flutuante: o halo para de respirar depois da primeira interação com ele */
+  var wf=$('.whats-flutuante');
+  ['pointerenter','focus','click'].forEach(function(ev){wf.addEventListener(ev,function(){wf.classList.add('parado')},{once:true})});
 
   /* ---------- HERO: vídeo controlado pelo scroll ---------- */
   var topo=$('.topo'), track=$('.track'), hall=$('#modelos'), video=$('.scene video'), fill=$('.carga span');
@@ -831,11 +923,6 @@ html:not(.hero-live) .dif{margin-top:14vh}
 
   /* ---------- movimento das outras seções ---------- */
   if(hasGsap){
-    // economia: cada fato se revela por máscara, ligado ao scroll
-    var fatos=$$('[data-fatos] .fato');
-    var tl=gsap.timeline({scrollTrigger:{trigger:'[data-fatos]',start:'top 82%',end:'bottom 52%',scrub:true}});
-    fatos.forEach(function(f,i){ tl.fromTo(f,{clipPath:'inset(0% 100% 0% 0%)'},{clipPath:'inset(0% 0% 0% 0%)',ease:'none',duration:1},i*.9); });
-
     // avaliações: as 5 estrelas desenham o traço e depois enchem
     var stars=$$('[data-estrelas] path');
     stars.forEach(function(p){ var L=p.getTotalLength(); gsap.set(p,{strokeDasharray:L,strokeDashoffset:L,fillOpacity:0}); });
