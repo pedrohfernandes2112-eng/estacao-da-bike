@@ -1,0 +1,1025 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bicicleta Elétrica em Florianópolis | Estação da Bike</title>
+<meta name="description" content="Bikes elétricas Ouxi e Inow no Rio Tavares, Florianópolis. Atendimento dos donos, oficina própria com conserto na hora e nota 5,0 no Google. Peça seu orçamento.">
+<meta name="theme-color" content="#181818">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Estação da Bike | Bicicletas elétricas no Rio Tavares, Florianópolis">
+<meta property="og:description" content="Ouxi e Inow escolhidas com você pelo Renato e pela Fabi, com oficina própria no Rio Tavares. Nota 5,0 no Google.">
+<meta property="og:image" content="assets/ouxi-praia.webp">
+<link rel="icon" href="assets/logo.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;700&family=Unbounded:wght@300;800;900&display=swap">
+<link rel="preload" as="image" href="assets/ouxi-praia.webp" fetchpriority="high">
+<script>document.documentElement.classList.add('js')</script>
+
+<!-- [A CONFIRMAR] geo: incluir "geo": {"@type":"GeoCoordinates","latitude":..,"longitude":..} com as coordenadas reais da loja -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BicycleStore",
+  "name": "Estação da Bike",
+  "alternateName": "Bike Elétrica Floripa",
+  "description": "Loja de bicicletas elétricas no Rio Tavares, Florianópolis. Revendedor autorizado Ouxi e Inow, com oficina especializada própria.",
+  "image": "assets/ouxi-praia.webp",
+  "logo": "assets/logo.png",
+  "telephone": "+55 48 99991-8272",
+  "priceRange": "$$",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Rod. Dr. Antônio Luiz Moura Gonzaga, 861",
+    "addressLocality": "Florianópolis",
+    "addressRegion": "SC",
+    "postalCode": "88048-382",
+    "addressCountry": "BR"
+  },
+  "areaServed": "Florianópolis",
+  "openingHoursSpecification": [
+    {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "09:00", "closes": "19:00"},
+    {"@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:00", "closes": "12:00"}
+  ],
+  "aggregateRating": {"@type": "AggregateRating", "ratingValue": "5.0", "reviewCount": "49", "bestRating": "5"},
+  "sameAs": ["https://instagram.com/bikeeletricafloripa"]
+}
+</script>
+
+<style>
+:root{
+  --g:#181818;          /* grafite: fundo dominante */
+  --g-2:#2A2A2A;        /* filetes */
+  --mute:#8A8A85;       /* legendas */
+  --ink:#FFFFFF;
+  --paper:#F2F2EE;
+  --volt:#22FF5F;       /* só CTA, hotspot, sublinhado e raio */
+  --stage:#121212;
+
+  --f-display:'Unbounded', 'Arial Black', sans-serif;
+  --f-mono:'IBM Plex Mono', ui-monospace, monospace;
+  --f-text:'Manrope', system-ui, sans-serif;
+
+  --wrap:1320px;
+  --gut:clamp(16px, 4vw, 40px);
+  --sec:clamp(64px, 8vw, 112px);
+  --cut:22px;           /* o corte diagonal do raio */
+  --head:64px;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--g);color:var(--paper);font:400 1.0625rem/1.65 var(--f-text);overflow-x:hidden}
+body::before{ /* grain 3,5% no grafite */
+  content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+button{font:inherit;color:inherit}
+h1,h2,h3,h4{margin:0;font-family:var(--f-display);color:var(--ink);letter-spacing:-.01em;line-height:1.02}
+p{margin:0}
+:focus-visible{outline:2px solid var(--volt);outline-offset:3px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.skip{position:absolute;left:12px;top:-60px;z-index:100;background:var(--volt);color:var(--g);padding:12px 16px;font-weight:700}
+.skip:focus{top:12px}
+section[id]{scroll-margin-top:calc(var(--head) + 12px)}
+
+.wrap{width:100%;max-width:var(--wrap);margin-inline:auto;padding-inline:var(--gut)}
+.mono{font-family:var(--f-mono);font-size:.8125rem;letter-spacing:.02em}
+.w9{font-weight:900}
+.w3{font-weight:300}
+.t-big{font-size:clamp(1.875rem, 5.4vw, 5rem)}
+.t-mid{font-size:clamp(1.75rem, 4.2vw, 3.75rem)}
+.lead{font-size:clamp(1.125rem, 1.6vw, 1.3125rem);line-height:1.55;color:var(--paper);max-width:38ch}
+.muted{color:var(--mute)}
+
+/* raio verde irregular como sublinhado */
+.raio{position:relative;white-space:nowrap;display:inline-block}
+.raio::after{
+  content:"";position:absolute;left:-3%;right:-3%;bottom:-.16em;height:.3em;pointer-events:none;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 22' preserveAspectRatio='none'%3E%3Cpath d='M2 13 L41 10 L50 17 L92 6 L99 14 L141 8 L149 18 L198 7' fill='none' stroke='%2322FF5F' stroke-width='3.6' stroke-linejoin='miter' stroke-linecap='square' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E") no-repeat center/100% 100%;
+}
+
+/* numeração de seção, pedido do briefing */
+.sec{padding-block:var(--sec)}
+.sec-head{display:grid;gap:18px;margin-bottom:clamp(36px,5vw,64px)}
+.sec-num{font-family:var(--f-mono);font-size:.875rem;color:var(--mute);display:flex;align-items:center;gap:12px}
+.sec-num::after{content:"";width:48px;height:1px;background:var(--g-2)}
+@media (min-width:900px){
+  .sec-head{grid-template-columns:140px minmax(0,1fr);align-items:start;gap:0}
+  .sec-num{padding-top:.9em}
+}
+
+/* botões: deslocamento físico de 3px com sombra dura volt */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.6em;min-height:52px;padding:.9em 1.5em;
+  font:700 1rem/1.1 var(--f-text);text-decoration:none;border:1px solid transparent;cursor:pointer;
+  transition:transform .16s ease, box-shadow .16s ease, background-color .16s ease;
+}
+.btn svg{width:20px;height:20px;flex:none}
+.btn--volt{background:var(--volt);color:var(--g);border-color:var(--volt)}
+.btn--volt:hover,.btn--volt:focus-visible{transform:translate(-3px,-3px);box-shadow:3px 3px 0 0 var(--g),3px 3px 0 1px var(--volt)}
+.btn--line{background:transparent;color:var(--ink);border-color:var(--paper)}
+.btn--line:hover,.btn--line:focus-visible{transform:translate(-3px,-3px);box-shadow:3px 3px 0 0 var(--volt)}
+.btn:active{transform:translate(0,0);box-shadow:none}
+.link-arrow{display:inline-flex;align-items:center;min-height:48px;color:var(--ink);font-weight:700;text-decoration:none;border-bottom:1px solid var(--g-2);transition:border-color .16s}
+.link-arrow:hover,.link-arrow:focus-visible{border-color:var(--volt)}
+
+/* placeholder rotulado */
+.ph{
+  display:grid;place-items:center;text-align:center;padding:24px;background:var(--stage);
+  border:1px dashed #4a4a47;color:var(--mute);font-family:var(--f-mono);font-size:.8125rem;line-height:1.5;
+}
+.ph strong{display:block;color:var(--paper);font-weight:500;margin-bottom:6px}
+.tbc{font-family:var(--f-mono);font-size:.8125rem;color:var(--mute);border:1px dashed #4a4a47;padding:2px 6px;white-space:nowrap}
+
+/* reveal único, só com JS e sem movimento reduzido */
+.rv-on [data-reveal]{opacity:0;transform:translateY(22px);transition:opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1)}
+.rv-on [data-reveal].is-in{opacity:1;transform:none}
+
+/* ===================== 00 HEADER ===================== */
+.topo{position:fixed;inset:0 0 auto 0;z-index:50;height:var(--head);border-bottom:1px solid transparent;transition:background-color .2s, border-color .2s}
+.topo.is-solid,html:not(.js) .topo{background:var(--g);border-color:var(--g-2)}
+.topo__in{height:100%;display:flex;align-items:center;gap:16px}
+.marca{display:flex;align-items:center;gap:10px;text-decoration:none;min-height:48px;margin-right:auto}
+.marca img{width:44px;height:44px}
+.marca span{font:800 .9375rem/1 var(--f-display);color:var(--ink);letter-spacing:-.01em}
+.nav{display:flex;gap:4px}
+.nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 12px;font:500 .9375rem/1 var(--f-text);color:var(--paper);text-decoration:none;border-bottom:1px solid transparent}
+.nav a:hover,.nav a:focus-visible{border-color:var(--volt)}
+.topo .btn{min-height:44px;padding:.7em 1.1em;font-size:.9375rem}
+.menu-btn{display:none;min-width:48px;min-height:44px;background:none;border:1px solid var(--g-2);cursor:pointer;font:500 .8125rem var(--f-mono);padding:0 12px}
+.t-curto{display:none}
+@media (max-width:899px){
+  .marca span{display:none}
+  .t-longo{display:none}.t-curto{display:inline}
+  .js .menu-btn{display:inline-flex;align-items:center;justify-content:center}
+  .js .nav{position:absolute;top:var(--head);left:0;right:0;flex-direction:column;background:var(--g);border-bottom:1px solid var(--g-2);padding:8px var(--gut) 16px;display:none}
+  .js .nav.is-open{display:flex}
+  .js .nav a{min-height:52px;border-bottom:1px solid var(--g-2);font-size:1.0625rem}
+  html:not(.js) .nav{display:none}
+}
+
+/* ===================== 01 HERO ===================== */
+.hero{padding-top:calc(var(--head) + 28px);display:grid;gap:32px}
+.hero__txt{padding-inline:var(--gut);display:grid;gap:22px;align-content:center}
+.hero h1{font-size:clamp(2.25rem, 4.4vw, 3.9rem);line-height:1.04}
+.hero h1 .w3{display:block}
+.hero__acts{display:flex;flex-wrap:wrap;align-items:center;gap:14px 28px;margin-top:6px}
+.hero__fig{position:relative;margin:0 0 0 var(--gut)}
+.hero__fig img{width:100%;height:clamp(340px, 92vw, 520px);object-fit:cover;object-position:50% 58%;
+  clip-path:polygon(var(--cut) 0,100% 0,100% 100%,0 100%,0 var(--cut))}
+.selo{
+  position:absolute;left:-6px;bottom:22px;transform:rotate(-3deg);
+  background:var(--g);color:var(--ink);border:1px solid var(--paper);padding:10px 14px;
+  font:500 .875rem/1.2 var(--f-mono);display:flex;align-items:center;gap:8px;white-space:nowrap
+}
+.selo svg{width:15px;height:15px;fill:var(--volt)}
+.hero__meta{padding-inline:var(--gut);display:flex;flex-wrap:wrap;gap:6px 22px;color:var(--mute)}
+@media (min-width:900px){
+  .hero{grid-template-columns:minmax(0,60fr) minmax(0,40fr);gap:0;min-height:min(100svh, 900px);padding-top:var(--head);align-items:stretch}
+  .hero__txt{padding-left:max(var(--gut), calc((100vw - var(--wrap)) / 2 + var(--gut)));padding-right:48px;padding-block:56px}
+  .hero__fig{margin:0;height:100%}
+  .hero__fig img{height:100%;min-height:560px;object-position:42% 60%;clip-path:polygon(18% 0,100% 0,100% 100%,0 100%)}
+  .selo{left:auto;right:auto;left:4%;bottom:12%}
+  .hero__meta{grid-column:1/-1}
+}
+
+/* ===================== 02 VITRINE 3D ===================== */
+.vitrine{border-top:1px solid var(--g-2)}
+.vit-intro{display:grid;gap:18px}
+.vit-ctrl{display:flex;align-items:center;gap:10px;margin-top:8px}
+.vit-ctrl button{width:48px;height:48px;display:grid;place-items:center;background:none;border:1px solid var(--paper);cursor:pointer;transition:transform .16s, box-shadow .16s}
+.vit-ctrl button:hover:not(:disabled){transform:translate(-3px,-3px);box-shadow:3px 3px 0 var(--volt)}
+.vit-ctrl button:disabled{opacity:.35;cursor:default}
+.vit-ctrl svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.6}
+.vit-ctrl .mono{margin-left:6px;color:var(--mute)}
+.vit-ctrl .mono b{color:var(--ink);font-weight:500}
+html:not(.js) .vit-ctrl button{display:none}
+
+.trilho{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.trilho::-webkit-scrollbar{display:none}
+.modelo{flex:0 0 100%;min-width:0;scroll-snap-align:start;padding-inline:var(--gut);display:grid;gap:28px;align-content:start}
+@media (min-width:1000px){
+  .modelo{grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:48px;padding-inline:max(var(--gut), calc((100vw - var(--wrap)) / 2 + var(--gut)))}
+}
+
+/* palco escuro de engenharia */
+.palco{
+  position:relative;background-color:var(--stage);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Cpath d='M32 0H0V32' fill='none' stroke='%23232323' stroke-width='1'/%3E%3C/svg%3E");
+  border:1px solid var(--g-2);perspective:1100px;padding:48px 16px 28px;
+  display:flex;flex-direction:column;align-items:center;
+  clip-path:polygon(var(--cut) 0,100% 0,100% 100%,0 100%,0 var(--cut));
+}
+.palco__tag{position:absolute;top:12px;left:calc(var(--cut) + 10px);right:14px;display:flex;justify-content:space-between;color:var(--mute);font-size:.8125rem}
+.rig{
+  position:relative;transform-style:preserve-3d;will-change:transform;
+  width:min(100%, calc(var(--h) * var(--ar)));aspect-ratio:var(--ar);
+  --h:min(54vh, 520px);
+}
+.rig img{width:100%;height:100%;object-fit:cover;border:1px solid var(--g-2)}
+
+/* hotspots pulsantes */
+.hs{
+  position:absolute;left:var(--x);top:var(--y);width:44px;height:44px;margin:-22px 0 0 -22px;padding:0;
+  background:none;border:0;cursor:pointer;display:grid;place-items:center;transform:translateZ(40px);
+}
+.hs span{position:relative;z-index:1;width:26px;height:26px;display:grid;place-items:center;background:var(--volt);color:var(--g);font:500 .75rem/1 var(--f-mono);border:1px solid var(--g)}
+.hs::before{content:"";position:absolute;width:26px;height:26px;border:1px solid var(--volt);animation:pulso 2.2s ease-out infinite}
+.hs[aria-expanded="true"] span{background:var(--g);color:var(--volt);border-color:var(--volt)}
+@keyframes pulso{0%{transform:scale(1);opacity:.9}100%{transform:scale(2.1);opacity:0}}
+
+/* linha-guia de prancheta */
+.guia{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:3;overflow:visible}
+.guia line,.guia path{stroke:var(--paper);stroke-width:1;fill:none;vector-effect:non-scaling-stroke}
+.guia circle{fill:none;stroke:var(--volt);stroke-width:1}
+.guia text{fill:var(--paper);font:500 13px var(--f-mono)}
+
+/* ficha técnica: papel de prancheta */
+.ficha{
+  position:relative;z-index:4;width:100%;margin-top:22px;background:var(--paper);color:var(--g);padding:16px 18px 18px;
+  clip-path:polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,0 100%);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Cpath d='M16 0H0V16' fill='none' stroke='%23deded8' stroke-width='1'/%3E%3C/svg%3E");
+}
+.ficha[hidden]{display:none}
+.ficha__n{font:500 .8125rem var(--f-mono);color:#4b4b47;display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid #c9c9c2;padding:0 40px 8px 0;margin-bottom:10px}
+.ficha__t{font:800 1.0625rem/1.2 var(--f-display);color:var(--g);margin-bottom:6px}
+.ficha__d{font-size:.9375rem;line-height:1.5;color:#2b2b29}
+.ficha__d .tbc{color:#4b4b47;border-color:#9a9a93}
+.ficha__x{position:absolute;top:2px;right:18px;width:44px;height:44px;background:none;border:0;cursor:pointer;display:grid;place-items:center;color:var(--g)}
+.ficha__x svg{width:14px;height:14px;stroke:currentColor;stroke-width:1.6}
+@media (min-width:1000px){
+  .ficha{position:absolute;width:270px;margin:0}
+  .ficha[data-pos^="t"]{top:46px}.ficha[data-pos^="b"]{bottom:46px}
+  .ficha[data-pos$="l"]{left:20px}.ficha[data-pos$="r"]{right:20px}
+}
+
+/* informação do modelo */
+.modelo__info{display:grid;gap:22px;align-content:start}
+.modelo__nome{font-size:clamp(2.25rem,4vw,3.5rem);font-weight:900}
+.modelo__meta{color:var(--mute);margin-top:8px}
+.pecas{list-style:none;margin:0;padding:0;border-top:1px solid var(--g-2);counter-reset:p}
+.pecas li{border-bottom:1px solid var(--g-2)}
+.peca{display:flex;align-items:center;gap:14px;width:100%;min-height:46px;padding:8px 0;background:none;border:0;text-align:left;cursor:pointer;font:500 .9375rem/1.35 var(--f-text);color:var(--paper)}
+.peca .mono{color:var(--mute);width:2ch}
+.peca:hover .peca__nome,.peca[aria-pressed="true"] .peca__nome{text-decoration:underline;text-decoration-color:var(--volt);text-underline-offset:4px;text-decoration-thickness:2px}
+.peca__d{font-size:.875rem;color:var(--mute);padding:0 0 12px 2.6em}
+.js .peca__d{display:none}
+.curio{border-left:1px solid var(--volt);padding:2px 0 2px 16px;font-size:1rem}
+.curio b{display:block;font:500 .8125rem var(--f-mono);color:var(--mute);margin-bottom:4px;font-weight:500}
+.specs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));margin:0;border-top:1px solid var(--g-2);border-left:1px solid var(--g-2)}
+.specs div{padding:10px 12px;border-right:1px solid var(--g-2);border-bottom:1px solid var(--g-2)}
+.specs dt{font:400 .8125rem var(--f-mono);color:var(--mute)}
+.specs dd{margin:4px 0 0}
+@media (min-width:600px){.specs{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+/* ===================== 03 ECONOMIA ===================== */
+.eco{border-top:1px solid var(--g-2)}
+.eco__grid{display:grid;gap:40px}
+.eco__hero{display:grid;gap:20px}
+.num-xl{font:900 clamp(4.5rem,13vw,10.5rem)/.9 var(--f-display);color:var(--ink);letter-spacing:-.04em}
+.num-xl small{display:block;font:300 clamp(1.25rem,2.4vw,2rem)/1.2 var(--f-display);letter-spacing:0;margin-top:12px}
+.eco__painel{display:grid;grid-template-columns:140px 1fr;gap:18px;align-items:end;margin-top:12px}
+.eco__painel img{width:140px;height:184px;object-fit:cover;object-position:40% 70%;filter:grayscale(.2)}
+.eco__list{list-style:none;margin:0;padding:0;border-top:1px solid var(--g-2)}
+.eco__list li{display:grid;grid-template-columns:auto 1fr;align-items:baseline;gap:18px;padding:22px 0;border-bottom:1px solid var(--g-2)}
+.eco__list .n{font:900 clamp(2.5rem,5vw,4rem)/1 var(--f-display);color:var(--ink)}
+.eco__list .l{font:300 clamp(1.125rem,1.8vw,1.5rem)/1.25 var(--f-display);color:var(--ink)}
+.eco__list li:nth-child(2) .n,.eco__list li:nth-child(3) .n{font-size:clamp(1.75rem,3.4vw,2.75rem)}
+.eco__dor{margin:-12px 0 48px;max-width:44ch}
+@media (min-width:900px){.eco__dor{margin-left:140px}}
+.eco__nota{margin-top:24px;max-width:56ch;font-size:.875rem;color:var(--mute)}
+@media (min-width:900px){
+  .eco__grid{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:72px;align-items:end}
+}
+
+/* ===================== 04 HISTÓRIA ===================== */
+.hist{border-top:1px solid var(--g-2)}
+.hist__grid{display:grid;gap:36px}
+.hist__ph{aspect-ratio:4/5;width:100%;max-width:420px;clip-path:polygon(var(--cut) 0,100% 0,100% 100%,0 100%,0 var(--cut))}
+.hist__txt{display:grid;gap:22px;align-content:start}
+.hist__txt p{max-width:58ch}
+.hist__txt p.lead{max-width:30ch}
+.carimbo{display:inline-flex;flex-direction:column;gap:2px;justify-self:start;border:1px solid var(--paper);padding:12px 16px;transform:rotate(-3deg);font:500 .8125rem/1.35 var(--f-mono);color:var(--ink)}
+.carimbo b{font:800 1rem/1.2 var(--f-display);letter-spacing:.01em}
+@media (min-width:900px){
+  .hist__grid{grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:72px;align-items:center}
+  .hist__ph{max-height:680px;max-width:none}
+}
+
+/* ===================== 05 DIFERENCIAIS / OFICINA ===================== */
+.dif{border-top:1px solid var(--g-2)}
+.dif__grid{display:grid;gap:40px}
+.dif__list{list-style:none;margin:0;padding:0;border-top:1px solid var(--g-2)}
+.dif__list li{display:grid;grid-template-columns:52px minmax(0,1fr);gap:8px 16px;padding:24px 0;border-bottom:1px solid var(--g-2)}
+.dif__list .mono{color:var(--mute);padding-top:.35em}
+.dif__list h3{font:800 clamp(1.25rem,2.1vw,1.75rem)/1.15 var(--f-display)}
+.dif__list p{grid-column:2;color:var(--paper);max-width:52ch}
+.dif__list li:first-child h3{font-size:clamp(1.5rem,2.8vw,2.375rem)}
+.dif__fig{margin:0;position:relative}
+.dif__fig img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:30% 60%;clip-path:polygon(0 0,100% 0,100% calc(100% - var(--cut)),calc(100% - var(--cut)) 100%,0 100%)}
+.dif__fig figcaption{margin-top:10px;color:var(--mute)}
+.oficina-cta{display:grid;gap:16px;margin-top:32px;padding:24px 0 0;border-top:1px solid var(--g-2)}
+@media (min-width:900px){
+  .dif__grid{grid-template-columns:minmax(0,7fr) minmax(0,4fr);gap:72px;align-items:start}
+  .dif__fig{position:sticky;top:calc(var(--head) + 32px);margin-top:-120px}
+  .oficina-cta{grid-template-columns:1fr auto;align-items:center}
+}
+
+/* ===================== 06 PROVA SOCIAL ===================== */
+.prova{border-top:1px solid var(--g-2)}
+.nota{display:grid;gap:14px;align-content:start}
+.nota__n{font:900 clamp(6rem,17vw,13rem)/.85 var(--f-display);color:var(--ink);letter-spacing:-.05em}
+.estrelas{display:flex;gap:6px}
+.estrelas svg{width:26px;height:26px;fill:var(--volt)}
+.prova__top{display:grid;gap:40px;margin-bottom:56px}
+.destaque{margin:0;border-top:1px solid var(--paper);padding-top:22px;display:grid;gap:18px}
+.destaque p{font:300 clamp(1.25rem,2vw,1.75rem)/1.35 var(--f-display);color:var(--ink)}
+.destaque footer,.dep footer{font:500 .8125rem var(--f-mono);color:var(--mute)}
+.mural{columns:1;column-gap:0;border-top:1px solid var(--g-2)}
+.dep{break-inside:avoid;margin:0;padding:24px 0;border-bottom:1px solid var(--g-2);display:grid;gap:12px}
+.dep p{font-size:1.0625rem}
+.dep:nth-child(3n+1) p{font-size:1.1875rem}
+.prova__links{display:flex;flex-wrap:wrap;gap:12px 32px;margin-top:36px}
+@media (min-width:700px){
+  .mural{columns:2;column-gap:40px;border-top:0}
+  .dep{border-top:1px solid var(--g-2);border-bottom:0}
+}
+@media (min-width:1000px){
+  .prova__top{grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:72px;align-items:end}
+  .mural{columns:3}
+}
+
+/* ===================== 07 VISITE ===================== */
+.visite{border-top:1px solid var(--g-2)}
+.vis__grid{display:grid;gap:36px}
+.mapa{position:relative;aspect-ratio:4/3;background:var(--stage);border:1px solid var(--g-2);clip-path:polygon(var(--cut) 0,100% 0,100% 100%,0 100%,0 var(--cut))}
+.mapa iframe{position:absolute;inset:0;width:100%;height:100%;border:0;filter:grayscale(1) contrast(1.05)}
+.mapa__ph{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:24px;color:var(--mute)}
+.vis__info{display:grid;gap:24px;align-content:start}
+.vis__info address{font-style:normal;font-size:1.125rem;color:var(--ink)}
+.status{display:inline-flex;align-items:center;gap:10px;font:500 .875rem var(--f-mono);color:var(--paper)}
+.status::before{content:"";width:9px;height:9px;border:1px solid var(--mute)}
+.status.is-open::before{background:var(--volt);border-color:var(--volt)}
+.status[hidden]{display:none}
+.horario{width:100%;border-collapse:collapse;font-size:1rem}
+.horario th,.horario td{padding:12px 0;border-bottom:1px solid var(--g-2);text-align:left;font-weight:400}
+.horario th{color:var(--paper)}
+.horario td{text-align:right;font-family:var(--f-mono);font-size:.9375rem;color:var(--ink)}
+.horario tr:first-child th,.horario tr:first-child td{border-top:1px solid var(--g-2)}
+.vis__acts{display:flex;flex-wrap:wrap;gap:14px}
+.fachada{aspect-ratio:16/9}
+@media (min-width:900px){
+  .vis__grid{grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:64px;align-items:start}
+  .mapa{aspect-ratio:auto;height:100%;min-height:560px}
+}
+
+/* ===================== 08 RODAPÉ ===================== */
+.rodape{border-top:1px solid var(--g-2);padding-block:64px 120px}
+.rod__grid{display:grid;gap:36px}
+.rod__marca img{width:96px;height:96px}
+.rodape h2{font:500 .8125rem var(--f-mono);color:var(--mute);margin-bottom:10px;letter-spacing:.02em}
+.rodape address{font-style:normal}
+.rodape a{text-decoration:none;display:inline-flex;align-items:center;min-height:44px;border-bottom:1px solid var(--g-2)}
+.rodape a:hover,.rodape a:focus-visible{border-color:var(--volt)}
+.rod__fim{margin-top:56px;padding-top:24px;border-top:1px solid var(--g-2);display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;color:var(--mute)}
+.rod__fim .linha{font:300 clamp(1rem,1.8vw,1.375rem)/1.3 var(--f-display);color:var(--ink)}
+@media (min-width:900px){.rod__grid{grid-template-columns:1.2fr 1fr 1fr 1fr;gap:48px}}
+
+/* WhatsApp flutuante */
+.wa-float{
+  position:fixed;right:16px;bottom:16px;z-index:40;width:58px;height:58px;display:grid;place-items:center;
+  background:var(--volt);color:var(--g);clip-path:polygon(0 0,100% 0,100% calc(100% - 14px),calc(100% - 14px) 100%,0 100%);
+  transition:transform .16s;
+}
+.wa-float svg{width:28px;height:28px;fill:currentColor}
+.wa-float:hover,.wa-float:focus-visible{transform:translate(-3px,-3px)}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .hs::before{animation:none;opacity:.6;transform:scale(1.35)}
+  .rig{transform:none!important}
+  .btn,.vit-ctrl button,.wa-float{transition:none}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-wa" viewBox="0 0 24 24"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.48-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.63.71.22 1.36.2 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.41-.08-.13-.28-.2-.57-.35m-5.42 7.4A9.87 9.87 0 0 1 7.02 20.4l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.89 9.88M20.46 3.49A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.69 1.45c6.55 0 11.89-5.34 11.89-11.89a11.82 11.82 0 0 0-3.48-8.42"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 1.8l3.05 6.86 7.45.72-5.62 4.98 1.64 7.33L12 17.9l-6.52 3.79 1.64-7.33L1.5 9.38l7.45-.72z"/></symbol>
+  <symbol id="i-left" viewBox="0 0 24 24"><path d="M15 4 7 12l8 8"/></symbol>
+  <symbol id="i-right" viewBox="0 0 24 24"><path d="m9 4 8 8-8 8"/></symbol>
+  <symbol id="i-x" viewBox="0 0 16 16"><path d="M2 2l12 12M14 2 2 14" fill="none"/></symbol>
+</svg>
+
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+
+<!-- 00 HEADER -->
+<header class="topo">
+  <div class="wrap topo__in">
+    <a class="marca" href="#topo" aria-label="Estação da Bike, início">
+      <img src="assets/logo.png" width="44" height="44" alt="Logo Bike Elétrica Floripa: letras BIKE brancas com um raio verde cortando o K">
+      <span>Estação da Bike</span>
+    </a>
+    <nav class="nav" id="nav" aria-label="Seções">
+      <a href="#modelos">Modelos</a>
+      <a href="#oficina">Oficina</a>
+      <a href="#avaliacoes">Avaliações</a>
+      <a href="#visite">Visite</a>
+    </nav>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
+    <a class="btn btn--volt" href="https://wa.me/5548999918272?text=Ol%C3%A1%2C%20Renato%20e%20Fabi!%20Vi%20o%20site%20da%20Esta%C3%A7%C3%A3o%20da%20Bike%20e%20quero%20um%20or%C3%A7amento%20de%20bike%20el%C3%A9trica." target="_blank" rel="noopener">
+      <svg aria-hidden="true"><use href="#i-wa"/></svg><span class="t-longo">Orçamento no WhatsApp</span><span class="t-curto">Orçamento</span>
+    </a>
+  </div>
+</header>
+
+<main id="conteudo">
+
+<!-- 01 HERO -->
+<section class="hero" id="topo" aria-labelledby="h-hero">
+  <div class="hero__txt">
+    <h1 id="h-hero"><span class="w9">A <span class="raio">Ilha</span> inteira</span> <span class="w3">cabe no seu pedal.</span></h1>
+    <p class="lead">Bicicletas elétricas Ouxi e Inow, escolhidas com você pelo Renato e pela Fabi, com oficina própria no Rio Tavares. Saia da loja pedalando.</p>
+    <div class="hero__acts">
+      <a class="btn btn--volt" href="https://wa.me/5548999918272?text=Ol%C3%A1%2C%20Renato%20e%20Fabi!%20Vi%20o%20site%20da%20Esta%C3%A7%C3%A3o%20da%20Bike%20e%20quero%20um%20or%C3%A7amento%20de%20bike%20el%C3%A9trica." target="_blank" rel="noopener">
+        <svg aria-hidden="true"><use href="#i-wa"/></svg>Quero meu orçamento
+      </a>
+      <a class="link-arrow" href="#visite">Ver como chegar →</a>
+    </div>
+  </div>
+  <figure class="hero__fig">
+    <img src="assets/ouxi-praia.webp" width="663" height="881" fetchpriority="high"
+      alt="Bicicleta elétrica Ouxi preta com banco de couro marrom e pneus fat estacionada na areia de uma praia em Florianópolis">
+    <p class="selo"><svg aria-hidden="true"><use href="#i-star"/></svg>5,0 no Google · 49 avaliações</p>
+  </figure>
+</section>
+
+<!-- 02 VITRINE 3D -->
+<section class="sec vitrine" id="modelos" aria-labelledby="h-modelos">
+  <div class="wrap sec-head">
+    <p class="sec-num">02</p>
+    <div class="vit-intro">
+      <h2 id="h-modelos" class="t-big"><span class="w9">Conheça cada peça</span> <span class="w3">antes de subir.</span></h2>
+      <p class="lead">Toque nos pontos verdes: cada número abre a ficha daquela peça. Arraste para o lado para trocar de modelo.</p>
+      <div class="vit-ctrl">
+        <button type="button" data-prev aria-label="Modelo anterior" aria-controls="trilho"><svg aria-hidden="true"><use href="#i-left"/></svg></button>
+        <button type="button" data-next aria-label="Próximo modelo" aria-controls="trilho"><svg aria-hidden="true"><use href="#i-right"/></svg></button>
+        <p class="mono" aria-live="polite"><b data-count>01</b> / 03 modelos</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="trilho" id="trilho" tabindex="0" aria-label="Vitrine de modelos, role para o lado">
+
+    <!-- Ouxi -->
+    <article class="modelo" id="m-ouxi" aria-labelledby="n-ouxi">
+      <div class="palco" data-palco>
+        <p class="palco__tag mono" aria-hidden="true"><span>OUXI · VISTA LATERAL</span><span>FL. 01/03</span></p>
+        <div class="rig" style="--ar:420/300">
+          <img src="assets/ouxi-vitrine.webp" width="420" height="300" loading="lazy"
+            alt="Bicicleta elétrica Ouxi preta vista de lado, com banco longo de couro marrom, bateria no quadro e pneus fat, na areia da praia">
+          <button class="hs" type="button" style="--x:23.8%;--y:39%" aria-expanded="false" aria-controls="f-ouxi" aria-label="Peça 1: farol redondo de LED"><span>1</span></button>
+          <button class="hs" type="button" style="--x:42.9%;--y:55%" aria-expanded="false" aria-controls="f-ouxi" aria-label="Peça 2: bateria integrada ao quadro"><span>2</span></button>
+          <button class="hs" type="button" style="--x:9.5%;--y:66%" aria-expanded="false" aria-controls="f-ouxi" aria-label="Peça 3: pneus fat"><span>3</span></button>
+          <button class="hs" type="button" style="--x:72.6%;--y:71.7%" aria-expanded="false" aria-controls="f-ouxi" aria-label="Peça 4: freio a disco"><span>4</span></button>
+          <button class="hs" type="button" style="--x:59.5%;--y:33%" aria-expanded="false" aria-controls="f-ouxi" aria-label="Peça 5: banco longo em couro marrom"><span>5</span></button>
+          <button class="hs" type="button" style="--x:46.4%;--y:72%" aria-expanded="false" aria-controls="f-ouxi" aria-label="Peça 6: pedal assistido"><span>6</span></button>
+        </div>
+        <svg class="guia" aria-hidden="true"></svg>
+        <div class="ficha" id="f-ouxi" hidden aria-live="polite">
+          <p class="ficha__n"><span></span><span>OUXI</span></p>
+          <h4 class="ficha__t"></h4>
+          <p class="ficha__d"></p>
+          <button class="ficha__x" type="button" aria-label="Fechar ficha"><svg aria-hidden="true"><use href="#i-x"/></svg></button>
+        </div>
+      </div>
+      <div class="modelo__info">
+        <div>
+          <h3 class="modelo__nome" id="n-ouxi">Ouxi</h3>
+          <p class="modelo__meta mono">Fat bike · revenda autorizada · preço sob consulta</p>
+        </div>
+        <ol class="pecas">
+          <li><button class="peca" type="button" aria-pressed="false"><span class="mono">01</span><span class="peca__nome">Farol redondo de LED</span></button><p class="peca__d">Farol de LED no estilo retrô, para enxergar e ser visto na volta da praia no fim da tarde.</p></li>
+          <li><button class="peca" type="button" aria-pressed="false"><span class="mono">02</span><span class="peca__nome">Bateria integrada ao quadro</span></button><p class="peca__d">Fica encaixada no quadro, protegida e no centro da bike. Removível para carregar em casa: <span class="tbc">[A CONFIRMAR]</span></p></li>
+          <li><button class="peca" type="button" aria-pressed="false"><span class="mono">03</span><span class="peca__nome">Pneus fat para areia e pista</span></button><p class="peca__d">Pneus largos que seguram na areia batida e no asfalto, e amortecem o buraco antes dele chegar em você.</p></li>
+          <li><button class="peca" type="button" aria-pressed="false"><span class="mono">04</span><span class="peca__nome">Freio a disco dianteiro e traseiro</span></button><p class="peca__d">Disco nas duas rodas: frenagem firme mesmo na descida do morro com a mochila nas costas.</p></li>
+          <li><button class="peca" type="button" aria-pressed="false"><span class="mono">05</span><span class="peca__nome">Banco longo em couro marrom, com garupa</span></button><p class="peca__d">Banco comprido em couro marrom e garupa atrás para a mochila ou a sacola do mercado.</p></li>
+          <li><button class="peca" type="button" aria-pressed="false"><span class="mono">06</span><span class="peca__nome">Pedal assistido</span></button><p class="peca__d">O motor soma força ao seu pedal: você chega ao trabalho sem suar, mesmo com vento sul de frente.</p></li>
+        </ol>
+        <p class="curio"><b>Curiosidade</b>Pneu fat roda na areia batida do Campeche sem afundar.</p>
+        <dl class="specs">
+          <div><dt>Autonomia</dt><dd><span class="tbc">[A CONFIRMAR]</span></dd></div>
+          <div><dt>Velocidade máx.</dt><dd><span class="tbc">[A CONFIRMAR]</span></dd></div>
+          <div><dt>Motor</dt><dd><span class="tbc">[A CONFIRMAR]</span></dd></div>
+          <div><dt>Bateria</dt><dd><span class="tbc">[A CONFIRMAR]</span></dd></div>
+          <div><dt>Peso</dt><dd><span class="tbc">[A CONFIRMAR]</span></dd></div>
+          <div><dt>Aro / pneu</dt><dd><span class="tbc">[A CONFIRMAR]</span></dd></div>
+        </dl>
+        <a class="btn btn--volt" href="https://wa.me/5548999918272?text=Ol%C3%A1!%20Tenho%20interesse%20na%20Ouxi.%20Podem%20me%20passar%20pre%C3%A7o%20e%20condi%C3%A7%C3%B5es%3F" target="_blank" rel="noopener">
+          <svg aria-hidden="true"><use href="#i-wa"/></svg>Pedir preço da Ouxi
+        </a>
+      </div>
+    </article>
+
+    <!-- V8 Pro -->
+    <article class="modelo" id="m-v8" aria-labelledby="n-v8">
+      <div class="palco" data-palco>
+        <p class="palco__tag mono" aria-hidden="true"><span>V8 PRO · TRASEIRA 3/4</span><span>FL. 02/03</span></p>
+        <div class="rig" style="--ar:490/580">
+          <img src="assets/v8pro-vitrine.webp" width="490" height="580" loading="lazy"
+            alt="Bicicleta elétrica V8 Pro preta, vista traseira com lanterna LED e banco de couro marrom, sobre deck de madeira à beira d'água">
+          <button class="hs" type="button" style="--x:76.5%;--y:27.2%" aria-expanded="false" aria-controls="f-v8" aria-label="Peça 1: lanterna traseira de LED"><span>1</span></button>
+          <button class="hs" type="button" style="--x:53.5%;--y:51.7%" aria-expanded="false" aria-controls="f-v8" aria-label="Peça 2: amortecedor traseiro com mola"><span>2</span></button>
+          <button class="hs" type="button" style="--x:67.3%;--y:72.4%" aria-expanded="false" aria-controls="f-v8" aria-label="Peça 3: freio a disco"><span>3</span></button>
+          <button class="hs" type="button" style="--x:82%;--y:47%" aria-expanded="false" aria-controls="f-v8" aria-label="Peça 4: paralamas"><span>4</span></button>
+          <button class="hs" type="button" style="--x:52%;--y:23%" aria-expanded="false" aria-controls="f-v8" aria-label="Peça 5: banco em couro marrom"><span>5</span></button>
+          <button class="hs" type="button" style="--x:35.7%;--y:60.3%" aria-expanded="false" aria-controls="f-v8" aria-label="Peça 6: transmissão por corrente e pedais"><span>6</span></button>
+        </div>
+        <svg class="guia" aria-hidden="true"></svg>
+        <div class="ficha" id="f-v8" hidden aria-live="polite">
+          <p class="ficha__n"><span></span><span>V8 PRO</span></p>
+          <h4 class="ficha__t"></h4>
+          <p class="ficha__d"></p>
+          <button class="ficha__x" type="button" aria-label="Fechar ficha"><svg aria-hidden="true"><use href="#i-x"/></svg></button>
+        </div>
+      </div>
+      <div class="modelo__info">
+        <div>
+          <h3 class="modelo__nome" id="n-v8">V8 Pro</h3>
+          <p class="modelo__meta mono">Fat bike com suspensão traseira · marca <span class="tbc">[A CONFIRMAR]</span> · preço <span class="tbc">[A CONFIRMAR]</span></p>
+        </div>
+        <ol class="pecas">
+          <li><button class="peca" type="button" aria-pressed="false"><span class="mono">01</span><span class="peca__nome">Lanterna traseira de LED</span></button><p class="peca__d">Luz vermelha forte na traseira: quem vem atrás te vê de longe na SC-405 depois que escurece.</p></li>
+          <li><button class="peca" type="button" aria-pressed="false"><span class="mono">02</span><span class="peca__nome">Amortecedor traseiro com mola</span></button><p class="peca__d">A mola da suspensão traseira segura lombada e calçamento antes de chegarem na sua coluna.</p></li>
+          <li><button class="peca" type="button" aria-pressed="false"><span class="mono">03</span><span class="peca__nome">Freio a disco</span></button><p class="peca__d">Disco na roda traseira, com resposta rápida no toque da manete.</p></li>
+          <li><button class="peca" type="button" aria-pressed="false"><span class="mono">04</span><span class="peca__nome">Paralamas</span></button><p class="peca__d">Segura a água e a areia que a roda levanta. Você chega no trabalho com a roupa limpa.</p></li>
+          <li><button class="peca" type="button" aria-pressed="false"><span class="mono">05</span><span class="peca__nome">Banco em couro marrom</span></button><p class="peca__d">Banco largo e acolchoado, feito para rodar o dia inteiro pela Ilha.</p></li>
+          <li><button class="peca" type="button" aria-pressed="false"><span class="mono">06</span><span class="peca__nome">Transmissão por corrente e pedais</span></button><p class="peca__d">Corrente e pedais de verdade: dá para pedalar sem motor, e a manutenção é simples na nossa oficina.</p></li>
+        </ol>
+        <p class="curio"><b>Curiosidade</b>Com o amortecedor traseiro, o calçamento das ruas do Rio Tavares chega bem mais macio no banco.</p>
+        <dl class="specs">
+          <div><dt>Autonomia</dt><dd><span class="tbc">[A CONFIRMAR]</span></dd></div>
+          <div><dt>Velocidade máx.</dt><dd><span class="tbc">[A CONFIRMAR]</span></dd></div>
+          <div><dt>Motor</dt><dd><span class="tbc">[A CONFIRMAR]</span></dd></div>
+          <div><dt>Bateria</dt><dd><span class="tbc">[A CONFIRMAR]</span></dd></div>
+          <div><dt>Peso</dt><dd><span class="tbc">[A CONFIRMAR]</span></dd></div>
+          <div><dt>Aro / pneu</dt><dd><span class="tbc">[A CONFIRMAR]</span></dd></div>
+        </dl>
+        <a class="btn btn--volt" href="https://wa.me/5548999918272?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20a%20V8%20Pro%3A%20pre%C3%A7o%2C%20autonomia%20e%20se%20tem%20pronta%20entrega." target="_blank" rel="noopener">
+          <svg aria-hidden="true"><use href="#i-wa"/></svg>Perguntar sobre a V8 Pro
+        </a>
+      </div>
+    </article>
+
+    <!-- Inow -->
+    <article class="modelo" id="m-inow" aria-labelledby="n-inow">
+      <div class="palco" data-palco>
+        <p class="palco__tag mono" aria-hidden="true"><span>INOW · VISTA LATERAL</span><span>FL. 03/03</span></p>
+        <div class="rig" style="--ar:704/600">
+          <img src="assets/inow-vitrine.webp" width="704" height="600" loading="lazy"
+            alt="Bicicleta elétrica Inow fat bike verde-menta com banco preto, farol redondo de LED e pneus Kenda, de lado sobre a grama em frente a um jardim tropical">
+          <button class="hs" type="button" style="--x:77.1%;--y:45.5%" aria-expanded="false" aria-controls="f-inow" aria-label="Peça 1: farol redondo de LED"><span>1</span></button>
+          <button class="hs" type="button" style="--x:31.3%;--y:37%" aria-expanded="false" aria-controls="f-inow" aria-label="Peça 2: banco longo"><span>2</span></button>
+          <button class="hs" type="button" style="--x:90%;--y:72%" aria-expanded="false" aria-controls="f-inow" aria-label="Peça 3: pneus fat com cravos"><span>3</span></button>
+          <button class="hs" type="button" style="--x:21.3%;--y:63%" aria-expanded="false" aria-controls="f-inow" aria-label="Peça 4: amortecedor traseiro"><span>4</span></button>
+          <button class="hs" type="button" style="--x:41%;--y:49%" aria-expanded="false" aria-controls="f-inow" aria-label="Peça 5: quadro e bateria"><span>5</span></button>
+          <button class="hs" type="button" style="--x:64%;--y:6%" aria-expanded="false" aria-controls="f-inow" aria-label="Peça 6: retrovisor"><span>6</span></button>
+        </div>
+        <svg class="guia" aria-hidden="true"></svg>
+        <div class="ficha" id="f-inow" hidden aria-live="polite">
+          <p class="ficha__n"><span></span><span>INOW</span></p>
+          <h4 class="ficha__t"></h4>
+          <p class="ficha__d"></p>
+          <button class="ficha__x" type="button" aria-label="Fechar ficha"><svg aria-hidden="true"><use href="#i-x"/></svg></button>
+        </div>
+      </div>
+      <div class="modelo__info">
+        <div>
+          <h3 class="modelo__nome" id="n-inow">Inow</h3>
+          <p class="modelo__meta mono">Fat bike · revenda autorizada · preço sob consulta</p>
+        </div>
+        <ol class="pecas">
+          <li><button class="peca" type="button" aria-pressed="false"><span class="mono">01</span><span class="peca__nome">Farol redondo de LED</span></button><p class="peca__d">O farol redondo de LED na frente é a assinatura da Inow e ilumina bem a ciclovia à noite.</p></li>
+          <li><button class="peca" type="button" aria-pressed="false"><span class="mono">02</span><span class="peca__nome">Banco longo</span></button><p class="peca__d">Banco inteiriço e comprido, com espaço para ajustar a sua posição no pedal.</p></li>
+          <li><button class="peca" type="button" aria-pressed="false"><span class="mono">03</span><span class="peca__nome">Pneus fat com cravos</span></button><p class="peca__d">Pneus Kenda largos e com cravos, que seguram na grama, na terra batida e na areia.</p></li>
+          <li><button class="peca" type="button" aria-pressed="false"><span class="mono">04</span><span class="peca__nome">Amortecedor traseiro</span></button><p class="peca__d">Suspensão traseira com mola para os trechos de calçamento e as lombadas do caminho.</p></li>
+          <li><button class="peca" type="button" aria-pressed="false"><span class="mono">05</span><span class="peca__nome">Quadro e bateria</span></button><p class="peca__d">Quadro em linhas retas com a bateria logo abaixo do banco. Posição e capacidade: <span class="tbc">[A CONFIRMAR]</span></p></li>
+          <li><button class="peca" type="button" aria-pressed="false"><span class="mono">06</span><span class="peca__nome">Retrovisor</span></button><p class="peca__d">Retrovisor no guidão para ver quem vem atrás antes de mudar de faixa.</p></li>
+        </ol>
+        <p class="curio"><b>Curiosidade</b>Os cravos do pneu Kenda deixam a Inow à vontade fora do asfalto: grama, terra batida e trilha leve.</p>
+        <dl class="specs">
+          <div><dt>Autonomia</dt><dd><span class="tbc">[A CONFIRMAR]</span></dd></div>
+          <div><dt>Velocidade máx.</dt><dd><span class="tbc">[A CONFIRMAR]</span></dd></div>
+          <div><dt>Motor</dt><dd><span class="tbc">[A CONFIRMAR]</span></dd></div>
+          <div><dt>Bateria</dt><dd><span class="tbc">[A CONFIRMAR]</span></dd></div>
+          <div><dt>Peso</dt><dd><span class="tbc">[A CONFIRMAR]</span></dd></div>
+          <div><dt>Aro / pneu</dt><dd><span class="tbc">[A CONFIRMAR]</span></dd></div>
+        </dl>
+        <a class="btn btn--volt" href="https://wa.me/5548999918272?text=Ol%C3%A1!%20Quero%20conhecer%20os%20modelos%20Inow." target="_blank" rel="noopener">
+          <svg aria-hidden="true"><use href="#i-wa"/></svg>Conhecer os modelos Inow
+        </a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- 03 VOCÊ SABIA? -->
+<section class="sec eco" id="economia" aria-labelledby="h-eco">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-num">03</p>
+      <h2 id="h-eco" class="t-mid" data-reveal><span class="w9">O carro para.</span> <span class="w3">Você passa.</span></h2>
+    </div>
+    <p class="lead eco__dor" data-reveal>Enquanto o carro para no Rio Tavares em janeiro, você passa. Sem fila na SC-405, sem posto e sem procurar vaga no Campeche.</p>
+    <div class="eco__grid">
+      <div class="eco__hero" data-reveal>
+        <p class="num-xl">R$ 0,01<small>por km rodado</small></p>
+        <div class="eco__painel">
+          <img src="assets/painel.webp" width="663" height="873" loading="lazy"
+            alt="Guidão preto de bicicleta elétrica com painel digital colorido marcando zero quilômetro por hora">
+          <p class="muted">Base de cálculo do custo por km: <span class="tbc">[A CONFIRMAR]</span><br>Carrega na tomada de casa, sem posto e sem fila.</p>
+        </div>
+      </div>
+      <div data-reveal>
+        <ul class="eco__list">
+          <li><span class="n">0</span><span class="l">litro de gasolina</span></li>
+          <li><span class="n">Sem</span><span class="l">IPVA</span></li>
+          <li><span class="n">Sem</span><span class="l">emplacamento</span></li>
+          <li><span class="n">100%</span><span class="l">elétrica</span></li>
+        </ul>
+        <p class="eco__nota">Válido para modelos enquadrados como bicicleta elétrica pelas regras do CONTRAN. A gente explica direitinho na loja.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 NOSSA HISTÓRIA -->
+<section class="sec hist" id="historia" aria-labelledby="h-hist">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-num">04</p>
+      <h2 id="h-hist" class="t-mid" data-reveal><span class="w9">Renato e Fabi,</span> <span class="w3">no balcão.</span></h2>
+    </div>
+    <div class="hist__grid">
+      <div class="ph hist__ph" role="img" aria-label="Espaço reservado para a foto do Renato e da Fabi na loja" data-reveal>
+        <p><strong>[PLACEHOLDER 4:5]</strong>Foto do Renato e da Fabi na loja do Rio Tavares</p>
+      </div>
+      <div class="hist__txt" data-reveal>
+        <p class="lead">A Estação da Bike nasceu há quase dois anos no Rio Tavares, das mãos do Renato e da Fabi.</p>
+        <p>Quem entra aqui é atendido pelos donos: sem pressa, sem empurrar modelo, explicando o que cada bike faz de verdade. Primeiro a gente entende a sua rotina (trabalho, praia, mercado, faculdade), depois mostra as bikes que fazem sentido para ela.</p>
+        <p>Nossa missão é simples: deixar a mobilidade elétrica acessível e prática em Floripa, com economia, liberdade e mais qualidade de vida.</p>
+        <p class="carimbo"><span>Revendedor autorizado</span><b>Ouxi · Inow</b></p>
+        <div>
+          <a class="btn btn--volt" href="https://wa.me/5548999918272?text=Oi%2C%20Renato%20e%20Fabi!%20Quero%20ajuda%20para%20escolher%20o%20modelo%20certo%20para%20mim." target="_blank" rel="noopener">
+            <svg aria-hidden="true"><use href="#i-wa"/></svg>Fale direto com o Renato e a Fabi
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 POR QUE A ESTAÇÃO DA BIKE -->
+<section class="sec dif" id="oficina" aria-labelledby="h-dif">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-num">05</p>
+      <h2 id="h-dif" class="t-mid" data-reveal><span class="w3">Conserto</span> <span class="w9"><span class="raio">na hora</span>.</span></h2>
+    </div>
+    <div class="dif__grid">
+      <div>
+        <ol class="dif__list" data-reveal>
+          <li><span class="mono">01</span><h3>Oficina própria no Rio Tavares</h3><p>Manutenção especializada em bicicleta elétrica, com conserto na hora ou em poucas horas. Reparo de pneu, ajustes, revisão e suporte pós-compra, tudo no mesmo endereço da loja.</p></li>
+          <li><span class="mono">02</span><h3>Atendimento pelos próprios donos</h3><p>É o Renato e a Fabi que te recebem, com paciência e transparência, do primeiro test ride à revisão.</p></li>
+          <li><span class="mono">03</span><h3>Sai montada e pronta para andar</h3><p>A bike sai da loja montada e revisada. Você entra a pé e volta para casa pedalando.</p></li>
+          <li><span class="mono">04</span><h3>Preço justo e negociável</h3><p>Muitas vezes melhor que na internet, e com a oficina a poucos minutos de você depois da compra.</p></li>
+          <li><span class="mono">05</span><h3>Pós-venda que responde</h3><p>Se furar o pneu, a gente socorre. Pode chamar no WhatsApp.</p></li>
+        </ol>
+        <div class="oficina-cta" data-reveal>
+          <p class="lead">Sua bike elétrica precisa de manutenção? Comprada aqui ou não, traz que a gente olha.</p>
+          <a class="btn btn--volt" href="https://wa.me/5548999918272?text=Ol%C3%A1!%20Minha%20bike%20el%C3%A9trica%20precisa%20de%20manuten%C3%A7%C3%A3o.%20Conseguem%20ver%20hoje%3F" target="_blank" rel="noopener">
+            <svg aria-hidden="true"><use href="#i-wa"/></svg>Chamar a oficina
+          </a>
+        </div>
+      </div>
+      <figure class="dif__fig" data-reveal>
+        <img src="assets/v8-deck.webp" width="883" height="884" loading="lazy"
+          alt="Bicicleta elétrica fat bike preta com banco de couro marrom e lanterna traseira acesa, sobre um píer de madeira na lagoa ao pôr do sol">
+        <figcaption class="mono">Fim de tarde no deck, sul da Ilha</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- 06 QUEM PEDALA COM A GENTE -->
+<section class="sec prova" id="avaliacoes" aria-labelledby="h-prova">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-num">06</p>
+      <h2 id="h-prova" class="t-mid" data-reveal><span class="w9">Quem pedala</span> <span class="w3">com a gente.</span></h2>
+    </div>
+    <div class="prova__top">
+      <div class="nota" data-reveal>
+        <p class="nota__n"><span class="raio">5,0</span></p>
+        <div class="estrelas" role="img" aria-label="5 de 5 estrelas">
+          <svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg>
+        </div>
+        <p>49 avaliações no Google, todas 5 estrelas.</p>
+      </div>
+      <blockquote class="destaque" data-reveal>
+        <p>“Acabei furando o pneu e a Fabi veio socorrer, e o Renato consertou o pneu na hora. Um dos maiores diferenciais é ter a manutenção especializada perto de você.”</p>
+        <footer>Maria · avaliação no Google</footer>
+      </blockquote>
+    </div>
+    <div class="mural">
+      <blockquote class="dep"><p>“Renato e Fabi foram extremamente educados, atenciosos, pacientes, honestos e transparentes. Se você está em dúvida entre uma ou outra loja, eu indico fortemente essa loja.”</p><footer>Amanda</footer></blockquote>
+      <blockquote class="dep"><p>“Muito fácil e transparente a negociação. Já estamos indo pra 2ª bike. Nota 10.”</p><footer>Gilberto</footer></blockquote>
+      <blockquote class="dep"><p>“Levei minha bike elétrica pra arrumar e me devolveu perfeita em pouquíssimas horas.”</p><footer>Laura</footer></blockquote>
+      <blockquote class="dep"><p>“Negociação tranquila e preço melhor que na internet, principalmente considerando o pós-venda e os serviços especializados em bicicletas elétricas.”</p><footer>Vitor</footer></blockquote>
+      <blockquote class="dep"><p>“Melhor loja do sul da ilha! Se você está pensando em comprar uma bike elétrica, passa na loja que você não vai se arrepender.”</p><footer>Gabriela</footer></blockquote>
+      <blockquote class="dep"><p>“As bikes são muito boas e mudaram meu estilo de vida! Sem falar na economia de combustível.”</p><footer>Eduardo</footer></blockquote>
+      <blockquote class="dep"><p>“Além do ótimo atendimento, o pós-venda também foi excelente. Sempre que precisei de suporte, fui prontamente atendida.”</p><footer>Marthina</footer></blockquote>
+    </div>
+    <div class="prova__links">
+      <!-- [A CONFIRMAR] trocar pelo link direto do perfil da loja no Google -->
+      <a class="link-arrow" href="https://www.google.com/search?q=Esta%C3%A7%C3%A3o+da+Bike+Rio+Tavares+Florian%C3%B3polis" target="_blank" rel="noopener">Ver todas no Google →</a>
+      <a class="link-arrow" href="https://instagram.com/bikeeletricafloripa" target="_blank" rel="noopener">1.460 pessoas acompanham no Instagram: @bikeeletricafloripa</a>
+    </div>
+  </div>
+</section>
+
+<!-- 07 VISITE A LOJA -->
+<section class="sec visite" id="visite" aria-labelledby="h-vis">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-num">07</p>
+      <h2 id="h-vis" class="t-mid" data-reveal><span class="w9">Vem fazer</span> <span class="w3">um test ride.</span></h2>
+    </div>
+    <div class="vis__grid">
+      <div class="mapa" data-map="https://www.google.com/maps?q=Rod.+Dr.+Ant%C3%B4nio+Luiz+Moura+Gonzaga,+861,+Rio+Tavares,+Florian%C3%B3polis+-+SC,+88048-382&output=embed">
+        <p class="mapa__ph mono">Rod. Dr. Antônio Luiz Moura Gonzaga, 861<br>Rio Tavares · Florianópolis/SC</p>
+        <noscript><iframe src="https://www.google.com/maps?q=Rod.+Dr.+Ant%C3%B4nio+Luiz+Moura+Gonzaga,+861,+Rio+Tavares,+Florian%C3%B3polis+-+SC,+88048-382&output=embed" title="Mapa da Estação da Bike no Rio Tavares" loading="lazy" width="800" height="600"></iframe></noscript>
+      </div>
+      <div class="vis__info">
+        <p class="lead">Vem fazer um test ride: a bike certa a gente descobre pedalando.</p>
+        <address>Rod. Dr. Antônio Luiz Moura Gonzaga, 861<br>Rio Tavares, Florianópolis/SC<br>CEP 88048-382</address>
+        <p class="status" data-status hidden></p>
+        <table class="horario">
+          <caption class="sr-only">Horário de funcionamento</caption>
+          <tbody>
+            <tr><th scope="row">Segunda a sexta</th><td>9h às 19h</td></tr>
+            <tr><th scope="row">Sábado</th><td>9h às 12h</td></tr>
+            <tr><th scope="row">Domingo</th><td>Fechado</td></tr>
+          </tbody>
+        </table>
+        <div class="vis__acts">
+          <a class="btn btn--volt" href="https://wa.me/5548999918272?text=Ol%C3%A1!%20Estou%20indo%20%C3%A0%20loja%20hoje%2C%20voc%C3%AAs%20est%C3%A3o%20a%C3%AD%3F" target="_blank" rel="noopener">
+            <svg aria-hidden="true"><use href="#i-wa"/></svg>Avisar que estou indo
+          </a>
+          <a class="btn btn--line" href="https://www.google.com/maps/dir/?api=1&amp;destination=Rod.%20Dr.%20Ant%C3%B4nio%20Luiz%20Moura%20Gonzaga%2C%20861%2C%20Rio%20Tavares%2C%20Florian%C3%B3polis%20-%20SC%2C%2088048-382" target="_blank" rel="noopener">Traçar rota</a>
+        </div>
+        <div class="ph fachada" role="img" aria-label="Espaço reservado para a foto da fachada da loja e da oficina">
+          <p><strong>[PLACEHOLDER 16:9]</strong>Fachada da loja e oficina no Rio Tavares</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- 08 RODAPÉ -->
+<footer class="rodape">
+  <div class="wrap">
+    <div class="rod__grid">
+      <div class="rod__marca">
+        <img src="assets/logo.png" width="96" height="96" loading="lazy" alt="Logo Bike Elétrica Floripa, versão para fundo escuro">
+        <p class="carimbo" style="margin-top:24px"><span>Revendedor autorizado</span><b>Ouxi · Inow</b></p>
+      </div>
+      <div>
+        <h2>Endereço</h2>
+        <address>Estação da Bike<br>Rod. Dr. Antônio Luiz Moura Gonzaga, 861<br>Rio Tavares, Florianópolis/SC<br>CEP 88048-382</address>
+      </div>
+      <div>
+        <h2>Horário</h2>
+        <p>Segunda a sexta, 9h às 19h<br>Sábado, 9h às 12h<br>Domingo fechado</p>
+      </div>
+      <div>
+        <h2>Contato</h2>
+        <p><a href="https://wa.me/5548999918272?text=Ol%C3%A1%2C%20Renato%20e%20Fabi!%20Vi%20o%20site%20da%20Esta%C3%A7%C3%A3o%20da%20Bike%20e%20quero%20um%20or%C3%A7amento%20de%20bike%20el%C3%A9trica." target="_blank" rel="noopener">WhatsApp (48) 99991-8272</a></p>
+        <p><a href="https://instagram.com/bikeeletricafloripa" target="_blank" rel="noopener">Instagram @bikeeletricafloripa</a></p>
+      </div>
+    </div>
+    <div class="rod__fim">
+      <p class="linha">Rio Tavares · Sul da Ilha · Florianópolis/SC</p>
+      <p class="mono">© Estação da Bike</p>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/5548999918272?text=Ol%C3%A1%2C%20Renato%20e%20Fabi!%20Vi%20o%20site%20da%20Esta%C3%A7%C3%A3o%20da%20Bike%20e%20quero%20um%20or%C3%A7amento%20de%20bike%20el%C3%A9trica." target="_blank" rel="noopener" aria-label="Pedir orçamento pelo WhatsApp">
+  <svg aria-hidden="true"><use href="#i-wa"/></svg>
+</a>
+
+<script>
+(function(){
+  var d=document, root=d.documentElement;
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var fine=matchMedia('(hover: hover) and (pointer: fine)');
+  var pad=function(n){return String(n).padStart(2,'0')};
+
+  /* header sólido ao rolar */
+  var topo=d.querySelector('.topo');
+  var solid=function(){topo.classList.toggle('is-solid',scrollY>8)};
+  solid(); addEventListener('scroll',solid,{passive:true});
+
+  /* menu do celular */
+  var mb=d.querySelector('.menu-btn'), nav=d.getElementById('nav');
+  var setMenu=function(o){mb.setAttribute('aria-expanded',String(o));nav.classList.toggle('is-open',o)};
+  mb.addEventListener('click',function(){setMenu(mb.getAttribute('aria-expanded')!=='true')});
+  nav.addEventListener('click',function(e){if(e.target.closest('a'))setMenu(false)});
+
+  /* reveal on scroll, uma vez só */
+  if(!reduce && 'IntersectionObserver' in window){
+    root.classList.add('rv-on');
+    var io=new IntersectionObserver(function(es){es.forEach(function(en){
+      if(en.isIntersecting){en.target.classList.add('is-in');io.unobserve(en.target)}
+    })},{rootMargin:'0px 0px -6% 0px',threshold:.06});
+    d.querySelectorAll('[data-reveal]').forEach(function(el){io.observe(el)});
+  }
+
+  /* carrossel de modelos */
+  var trilho=d.getElementById('trilho'), slides=trilho.children;
+  var prev=d.querySelector('[data-prev]'), next=d.querySelector('[data-next]'), cnt=d.querySelector('[data-count]');
+  var idx=function(){var w=trilho.clientWidth;return w?Math.round(trilho.scrollLeft/w):0};
+  var go=function(i){i=Math.max(0,Math.min(slides.length-1,i));trilho.scrollTo({left:i*trilho.clientWidth,behavior:reduce?'auto':'smooth'})};
+  var upd=function(){var i=idx();cnt.textContent=pad(i+1);prev.disabled=i===0;next.disabled=i===slides.length-1};
+  prev.addEventListener('click',function(){go(idx()-1)});
+  next.addEventListener('click',function(){go(idx()+1)});
+  var su=0; trilho.addEventListener('scroll',function(){cancelAnimationFrame(su);su=requestAnimationFrame(upd)},{passive:true});
+  upd();
+
+  /* vitrine 3D + hotspots */
+  var MAX=15, orient=null, raf=0;
+  var clamp=function(v,m){return Math.max(-m,Math.min(m,v))};
+  var S=[].map.call(d.querySelectorAll('[data-palco]'),function(p){
+    var model=p.closest('.modelo');
+    return {p:p, rig:p.querySelector('.rig'), svg:p.querySelector('.guia'), ficha:p.querySelector('.ficha'),
+      hs:[].slice.call(p.querySelectorAll('.hs')), legend:[].slice.call(model.querySelectorAll('.peca')),
+      items:[].map.call(model.querySelectorAll('.pecas li'),function(li){return{n:li.querySelector('.peca__nome').textContent,d:li.querySelector('.peca__d').innerHTML}}),
+      tx:0,ty:0,x:0,y:0,vis:false,open:-1};
+  });
+
+  function kick(){if(!raf)raf=requestAnimationFrame(tick)}
+  function tick(){
+    raf=0; var moving=false, vh=innerHeight;
+    S.forEach(function(s){
+      if(!s.vis)return;
+      if(!reduce){
+        if(!fine.matches){
+          if(orient){s.ty=clamp(orient.g*.6,MAX);s.tx=clamp((orient.b-40)*-.4,MAX)}
+          else{var r=s.p.getBoundingClientRect();var k=Math.max(-1,Math.min(1,(r.top+r.height/2-vh/2)/(vh/2)));s.tx=k*9;s.ty=-k*MAX}
+        }
+        s.x+=(s.tx-s.x)*.12; s.y+=(s.ty-s.y)*.12;
+        if(Math.abs(s.tx-s.x)>.03||Math.abs(s.ty-s.y)>.03)moving=true;
+        s.rig.style.transform='rotateX('+s.x.toFixed(2)+'deg) rotateY('+s.y.toFixed(2)+'deg)';
+      }
+      if(s.open>-1)drawGuide(s);
+    });
+    if(moving)kick();
+  }
+
+  if(!reduce){
+    S.forEach(function(s){
+      s.p.addEventListener('pointermove',function(e){
+        if(!fine.matches)return;
+        var r=s.p.getBoundingClientRect();
+        s.ty=clamp(((e.clientX-r.left)/r.width-.5)*2*MAX,MAX);
+        s.tx=clamp(-((e.clientY-r.top)/r.height-.5)*2*MAX*.7,MAX);
+        kick();
+      });
+      s.p.addEventListener('pointerleave',function(){if(fine.matches){s.tx=0;s.ty=0;kick()}});
+    });
+    addEventListener('scroll',kick,{passive:true});
+    trilho.addEventListener('scroll',kick,{passive:true});
+    /* inclinação do aparelho; sem permissão, fica no scroll */
+    if(!fine.matches && 'DeviceOrientationEvent' in window){
+      var listen=function(){addEventListener('deviceorientation',function(e){if(e.gamma==null)return;orient={g:e.gamma,b:e.beta};kick()},{passive:true})};
+      if(typeof DeviceOrientationEvent.requestPermission==='function'){
+        var asked=false;
+        S.forEach(function(s){s.p.addEventListener('click',function(){
+          if(asked)return; asked=true;
+          DeviceOrientationEvent.requestPermission().then(function(r){if(r==='granted')listen()}).catch(function(){});
+        })});
+      } else listen();
+    }
+  }
+  addEventListener('resize',kick);
+
+  if('IntersectionObserver' in window){
+    var vo=new IntersectionObserver(function(es){es.forEach(function(en){
+      var s=S.find(function(x){return x.p===en.target}); s.vis=en.isIntersecting; if(s.vis)kick();
+    })});
+    S.forEach(function(s){vo.observe(s.p)});
+  } else S.forEach(function(s){s.vis=true});
+
+  function openPart(s,i){
+    S.forEach(function(o){if(o!==s&&o.open>-1)closePart(o)});
+    s.open=i;
+    var it=s.items[i], b=s.hs[i];
+    s.ficha.querySelector('.ficha__n span').textContent='Peça '+pad(i+1)+' de '+pad(s.items.length);
+    s.ficha.querySelector('.ficha__t').textContent=it.n;
+    s.ficha.querySelector('.ficha__d').innerHTML=it.d;
+    var x=parseFloat(b.style.getPropertyValue('--x')), y=parseFloat(b.style.getPropertyValue('--y'));
+    s.ficha.setAttribute('data-pos',(y<50?'b':'t')+(x<50?'r':'l'));
+    s.ficha.hidden=false;
+    s.hs.forEach(function(h,k){h.setAttribute('aria-expanded',String(k===i))});
+    s.legend.forEach(function(h,k){h.setAttribute('aria-pressed',String(k===i))});
+    drawGuide(s);
+  }
+  function closePart(s,focus){
+    if(s.open<0)return;
+    var last=s.hs[s.open];
+    s.open=-1; s.ficha.hidden=true; s.svg.innerHTML='';
+    s.hs.forEach(function(h){h.setAttribute('aria-expanded','false')});
+    s.legend.forEach(function(h){h.setAttribute('aria-pressed','false')});
+    if(focus)last.focus();
+  }
+  S.forEach(function(s){
+    var tog=function(i){if(s.open===i)closePart(s);else openPart(s,i)};
+    s.hs.forEach(function(b,i){b.addEventListener('click',function(){tog(i)})});
+    s.legend.forEach(function(b,i){b.addEventListener('click',function(){tog(i)})});
+    s.ficha.querySelector('.ficha__x').addEventListener('click',function(){closePart(s,true)});
+  });
+  d.addEventListener('keydown',function(e){
+    if(e.key!=='Escape')return;
+    if(nav.classList.contains('is-open')){setMenu(false);mb.focus()}
+    S.forEach(function(s){if(s.open>-1)closePart(s,true)});
+  });
+
+  /* linha-guia de prancheta: da peça até a ficha, com cota e número */
+  var NS='http://www.w3.org/2000/svg';
+  function el(n,a){var e=d.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);return e}
+  function drawGuide(s){
+    var pr=s.p.getBoundingClientRect(), br=s.hs[s.open].getBoundingClientRect(), fr=s.ficha.getBoundingClientRect();
+    var hx=br.left+br.width/2-pr.left, hy=br.top+br.height/2-pr.top;
+    var x1=fr.left-pr.left, y1=fr.top-pr.top, x2=x1+fr.width, y2=y1+fr.height;
+    var ax=Math.max(x1+12,Math.min(hx,x2-12)), ay=Math.max(y1,Math.min(hy,y2));
+    if(hx<x1)ax=x1; else if(hx>x2)ax=x2;
+    if(hy<y1)ay=y1; else if(hy>y2)ay=y2;
+    if(hx>=x1&&hx<=x2){ay=hy<y1?y1:y2}
+    var ex=ax, ey=ay, horiz=(ax===x1||ax===x2)&&!(hx>=x1&&hx<=x2);
+    /* cotovelo: diagonal sai da peça e termina em patamar reto */
+    var kx=horiz?ax+(ax===x1?-26:26):ax, ky=horiz?ay:ay+(ay===y1?-26:26);
+    var ang=Math.atan2(ky-hy,kx-hx), nx=-Math.sin(ang), ny=Math.cos(ang);
+    var mx=(hx+kx)/2+nx*12, my=(hy+ky)/2+ny*12;
+    var len=Math.round(Math.hypot(kx-hx,ky-hy)+Math.hypot(ex-kx,ey-ky));
+    s.svg.setAttribute('viewBox','0 0 '+pr.width+' '+pr.height);
+    s.svg.innerHTML='';
+    s.svg.appendChild(el('circle',{cx:hx,cy:hy,r:17}));
+    s.svg.appendChild(el('path',{d:'M'+(hx+Math.cos(ang)*17)+' '+(hy+Math.sin(ang)*17)+'L'+kx+' '+ky+'L'+ex+' '+ey}));
+    /* traços de cota nas pontas */
+    var t=5;
+    s.svg.appendChild(el('line',{x1:kx+nx*t,y1:ky+ny*t,x2:kx-nx*t,y2:ky-ny*t}));
+    var tx=horiz?0:t, ty=horiz?t:0;
+    s.svg.appendChild(el('line',{x1:ex-tx,y1:ey-ty,x2:ex+tx,y2:ey+ty}));
+    var lab=el('text',{x:mx,y:my,'text-anchor':'middle'}); lab.textContent='REF.'+pad(s.open+1)+' · '+len;
+    s.svg.appendChild(lab);
+  }
+
+  /* mapa só quando a seção chega perto */
+  var mapa=d.querySelector('[data-map]');
+  var loadMap=function(){
+    if(mapa.dataset.ok)return; mapa.dataset.ok='1';
+    var f=d.createElement('iframe'); f.src=mapa.dataset.map; f.title='Mapa da Estação da Bike no Rio Tavares';
+    f.loading='lazy'; f.width=800; f.height=600; f.referrerPolicy='no-referrer-when-downgrade';
+    mapa.appendChild(f);
+  };
+  if('IntersectionObserver' in window){
+    var mo=new IntersectionObserver(function(es){if(es.some(function(e){return e.isIntersecting})){loadMap();mo.disconnect()}},{rootMargin:'400px 0px'});
+    mo.observe(mapa);
+  } else loadMap();
+
+  /* aberto agora, no fuso de Florianópolis */
+  var st=d.querySelector('[data-status]');
+  try{
+    var parts=new Intl.DateTimeFormat('en-US',{timeZone:'America/Sao_Paulo',weekday:'short',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).formatToParts(new Date());
+    var g=function(t){return parts.find(function(x){return x.type===t}).value};
+    var wd=g('weekday'), m=(+g('hour')%24)*60+(+g('minute'));
+    var H={Mon:[540,1140],Tue:[540,1140],Wed:[540,1140],Thu:[540,1140],Fri:[540,1140],Sat:[540,720]};
+    var h=H[wd], txt;
+    if(h&&m>=h[0]&&m<h[1]){txt='Aberto agora · fecha às '+(h[1]/60)+'h';st.classList.add('is-open')}
+    else if(h&&m<h[0]){txt='Fechado agora · abre hoje às 9h'}
+    else if(wd==='Sat'){txt='Fechado agora · abre segunda às 9h'}
+    else {txt='Fechado agora · abre amanhã às 9h'}
+    st.textContent=txt; st.hidden=false;
+  }catch(e){}
+})();
+</script>
+</body>
+</html>
